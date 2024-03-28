@@ -1,18 +1,14 @@
 import React from "react";
 import { StyleSheet, Image, Text, View } from "react-native";
 import colors from "../constants/colors";
-import { useFonts } from "expo-font";
 import { windowWidth, windowHeight } from '../constants/dimensions'; 
+import { SafeAreaView } from "react-native-safe-area-context";
+import { TouchableOpacity } from "react-native";
 
-export default function Startpage() {
-  const  [fontsLoaded] = useFonts({
-    Raleway: require("../assets/fonts/Raleway-VariableFont_wght.ttf"),
-  });
-  if (!fontsLoaded) {
-    return null;
-  }
+
+export default function Startpage({navigation}) {
   return (
-    <View style={styles.Startpage}>
+    <SafeAreaView style={styles.Startpage}>
         <View style={styles.BgCircle} />
           <Image 
             source={require('../assets/images/startPage/StartPageGirl.png')}
@@ -23,10 +19,12 @@ export default function Startpage() {
           <Text style={styles.Title}>Welcome to PeacefulPal</Text>
         </View>
       
-      <View style={styles.BottomButton}>
+      <TouchableOpacity 
+      onPress={() => navigation.navigate('AuthPage')}
+      style={styles.BottomButton}>
         <Text style={styles.BottomButtonText}>Let’s start</Text>
-      </View>
-    </View>
+      </TouchableOpacity>
+    </SafeAreaView>
   );
 }  
 
@@ -57,7 +55,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingTop: '30%',
-    fontFamily: "Raleway",  
+    //fontFamily: 'Raleway',  
   },
   Title: {
     display: "flex",
@@ -66,7 +64,7 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontSize: "60px",
     lineHeight: "70px",
-    fontFamily: "Raleway",
+    //fontFamily: 'Raleway',
     fontWeight: "700",
     textAlign: "center",
   },
@@ -91,7 +89,7 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontSize: "25px",
     lineHeight: "25px",
-    fontFamily: "Raleway",
+    //fontFamily: 'Raleway',
     fontWeight: "500",
     textAlign: "center",
   },
