@@ -5,24 +5,25 @@ import CustomDrawer from '../components/CustomDrawer';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-//import ProfileScreen from '../screens/ProfileScreen';
-//import MessagesScreen from '../screens/MessagesScreen';
-//import MomentsScreen from '../screens/MomentsScreen';
-//import SettingsScreen from '../screens/SettingsScreen';
-
+import ProfileScreen from '../screens/sideTab/ProfileScreen';
+import MessagesScreen from '../screens/sideTab/MessagesScreen';
+import MomentsScreen from '../screens/sideTab/MomentsScreen';
+import SettingsScreen from '../screens/sideTab/SettingsScreen';
+import AuthStack from './AuthStack';
+import colors from '../constants/colors';
 import TabNavigator from './TabNavigator';
 
 const Drawer = createDrawerNavigator();
 
-const AuthStack = () => {
+const AppStack = () => {
   return (
     <Drawer.Navigator
       drawerContent={props => <CustomDrawer {...props} />}
       screenOptions={{
         headerShown: false,
-        drawerActiveBackgroundColor: '#aa18ea',
-        drawerActiveTintColor: '#fff',
-        drawerInactiveTintColor: '#333',
+        drawerActiveBackgroundColor: colors.white,
+        drawerActiveTintColor: colors.BottomButton,
+        drawerInactiveTintColor: colors.black,
         drawerLabelStyle: {
           marginLeft: -25,
           fontFamily: 'Roboto-Medium',
@@ -39,7 +40,7 @@ const AuthStack = () => {
         }}
       />
       <Drawer.Screen
-        name="Profile"
+        name="Profile //TODO"
         component={ProfileScreen}
         options={{
           drawerIcon: ({color}) => (
@@ -48,7 +49,7 @@ const AuthStack = () => {
         }}
       />
       <Drawer.Screen
-        name="Messages"
+        name="Messages //TODO"
         component={MessagesScreen}
         options={{
           drawerIcon: ({color}) => (
@@ -57,7 +58,7 @@ const AuthStack = () => {
         }}
       />
       <Drawer.Screen
-        name="Moments"
+        name="Moments //TODO"
         component={MomentsScreen}
         options={{
           drawerIcon: ({color}) => (
@@ -66,7 +67,7 @@ const AuthStack = () => {
         }}
       />
       <Drawer.Screen
-        name="Settings"
+        name="Settings //TODO"
         component={SettingsScreen}
         options={{
           drawerIcon: ({color}) => (
@@ -78,4 +79,4 @@ const AuthStack = () => {
   );
 };
 
-export default AuthStack;
+export default AppStack;

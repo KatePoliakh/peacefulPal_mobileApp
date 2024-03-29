@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   SafeAreaView,
   View,
@@ -16,10 +16,12 @@ import { windowWidth, windowHeight } from '../../constants/dimensions';
 
 import InputField from '../../components/InputField';
 import CustomButton from '../../components/CustomButton';
+import { AuthContext } from '../../context/AuthContext';
 //import { RFValue } from 'react-native-responsive-fontsize';
 
 
 function AuthPage ({navigation}){
+  const {login} = useContext(AuthContext);
   return (
     
     <SafeAreaView style={styles.authPage}>
@@ -35,6 +37,7 @@ function AuthPage ({navigation}){
         <Text style={styles.loginText}>
           Login
         </Text>
+        
 
         <InputField
           label={'Email ID'}
@@ -48,7 +51,7 @@ function AuthPage ({navigation}){
           fieldButtonFunction={() => {}}
         />
         
-        <CustomButton label={"Login"} onPress={() => {}} />
+        <CustomButton label={"Login"} onPress={() => {login()}} />
 
         <View style={styles.rowView}>
           <Text >New to the app?</Text>

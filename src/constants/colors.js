@@ -8,4 +8,5 @@ export default {
     startPageBg: "#AEBFF7",
     BottomButton:  "#371B34",
     StartPageCircle: "#FCDDEC",
+    grey: "#333",
 };

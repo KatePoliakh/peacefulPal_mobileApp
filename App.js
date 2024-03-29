@@ -1,22 +1,18 @@
 import React from 'react';
+ 
+import { AuthProvider } from './src/context/AuthContext';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
 
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Startpage from './src/screens/StartPage';
-
-//import AuthStack from './src/navigation/AuthStack';
-
-import AuthPage from './src/screens/enterApp/AuthPage';
-import HomePage from './src/screens/HomePage';
-import AuthStack from './src/navigation/AuthStack';
+import AppNav from './src/navigation/AppNav';
 
 const Stack = createNativeStackNavigator();
 
 function App() {
   return (
-    <NavigationContainer>
-        <AuthStack />
-    </NavigationContainer>
+    <AuthProvider>
+    <AppNav />
+    </AuthProvider>
   );
 }
 

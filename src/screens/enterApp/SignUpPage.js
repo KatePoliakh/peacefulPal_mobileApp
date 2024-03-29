@@ -58,7 +58,7 @@ const RegisterScreen = ({navigation}) => {
           minimumDate={new Date('1980-01-01')}
           onConfirm={date => {
             setOpen(false);
-            setDate(date);
+            //setDate(date);
             setDobLabel(date.toDateString());
           }}
           onCancel={() => {
