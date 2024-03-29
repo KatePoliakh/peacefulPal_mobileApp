@@ -1,7 +1,12 @@
-import React from "react"
-import Navigation from "./config/Navigation"
+/**
+ * @format
+ */
+import 'react-native-gesture-handler';
+import {AppRegistry} from 'react-native';
+import App from './App';
+import {name as appName} from './app.json';
 
-export default () => <Navigation />
+AppRegistry.registerComponent(appName, () => App);
 /*export default function MainComponent() {
   const [fontsLoaded] = useFonts({
     'Raleway': require('./assets/fonts/Raleway-VariableFont_wght.ttf'), // adjust the path to your font file as needed

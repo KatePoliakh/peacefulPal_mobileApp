@@ -52,7 +52,7 @@ function AuthPage ({navigation}){
 
         <View style={styles.rowView}>
           <Text >New to the app?</Text>
-          <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+          <TouchableOpacity onPress={() => navigation.navigate('SignUpPage')}>
             <Text style={styles.registerText}> Register</Text>
           </TouchableOpacity>
         </View>
@@ -66,10 +66,11 @@ const styles = StyleSheet.create({
     position: "relative",
     flex: 1,
     backgroundColor: colors.startPageBg,
+    overflow: 'hidden',
   },
   BgCircle: {
     position: "absolute",
-    top: "30%",
+    top: "40%",
     left: "-40%",
     width: windowWidth, 
     height: windowWidth, 
@@ -103,7 +104,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   loginText: {
-    fontFamily: 'Roboto-Medium',
+    //fontFamily: 'Roboto-Medium',
     fontSize: 28,
     fontWeight: '800',
     color: colors.white,

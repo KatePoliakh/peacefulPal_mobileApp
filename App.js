@@ -8,16 +8,14 @@ import Startpage from './src/screens/StartPage';
 
 import AuthPage from './src/screens/enterApp/AuthPage';
 import HomePage from './src/screens/HomePage';
+import AuthStack from './src/navigation/AuthStack';
 
 const Stack = createNativeStackNavigator();
 
 function App() {
   return (
     <NavigationContainer>
-        <Stack.Navigator screenOptions={{headerShown: false}}>
-        <Stack.Screen name="StartPage" component={Startpage} />
-        <Stack.Screen name="AuthPage" component={AuthPage} />
-        </Stack.Navigator>
+        <AuthStack />
     </NavigationContainer>
   );
 }
