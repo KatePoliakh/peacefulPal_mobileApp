@@ -4,7 +4,6 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 
 import HomePage from '../screens/HomePage';
-import GameScreen from '../screens/bottomTab/JournalScreen';
 import FavoriteScreen from '../screens/bottomTab/FavoriteScreen';
 import GameDetailsScreen from '../screens/bottomTab/GameDetailsScreen';
 import Startpage from '../screens/StartPage';
@@ -12,6 +11,9 @@ import colors from '../constants/colors';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
+
+import MeditationScreen from '../screens/mainFeatures/MeditationScreen';
+import JournalScreen from '../screens/mainFeatures/JournalScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -31,6 +33,7 @@ const HomeStack = () => {
           title: route.params?.title,
         })}
       />
+      
     </Stack.Navigator>
   );
 };
@@ -59,8 +62,8 @@ const TabNavigator = () => {
         })}
       />
       <Tab.Screen
-        name="Game"
-        component={GameScreen}
+        name="Journal"
+        component={JournalScreen}
         options={{
           //tabBarBadge: 3,
           //tabBarBadgeStyle: {backgroundColor: 'yellow'},

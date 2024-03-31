@@ -38,7 +38,7 @@ function AuthPage ({navigation}){
           Login
         </Text>
         
-
+      
         <InputField
           label={'Email ID'}
           keyboardType="email-address"

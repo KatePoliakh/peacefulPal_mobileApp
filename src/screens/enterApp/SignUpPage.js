@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto-Medium',
     fontSize: 28,
     fontWeight: '500',
-    color: colors.BottomButton,
+    color: colors.white,
     marginBottom: '10%',
     marginTop: '65%',
   },
