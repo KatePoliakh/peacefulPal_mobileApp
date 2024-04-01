@@ -50,7 +50,9 @@ const HomeStack = () => {
       <Stack.Screen name="HappinessScreen" component={HappinessScreen} />
       <Stack.Screen name="RelaxfulScreen" component={RelaxfulScreen} />
 
-       
+      
+      <Stack.Screen name="NumbersGame" component={NumbersGame} />
+      <Stack.Screen name="SwingGame" component={SwingGame} />
 
     </Stack.Navigator>
   );
