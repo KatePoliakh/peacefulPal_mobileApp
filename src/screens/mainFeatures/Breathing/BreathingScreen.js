@@ -1,15 +1,15 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView} from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'; // make sure to install this package
-import colors from '../../constants/colors';
-import { windowHeight, windowWidth } from '../../constants/dimensions';
+import colors from '../../../constants/colors';
+import { windowHeight, windowWidth } from '../../../constants/dimensions';
 
 
-const JournalScreen = ({ navigation }) => {
+const BreathingScreen = ({ navigation }) => {
   return (
     <SafeAreaView>
     <View style={styles.container}>
-    <Text>Journal Screen</Text>
+    <Text>BreathingScreen </Text>
     <TouchableOpacity style={styles.returnButton} onPress={() => navigation.goBack()}>
     <Icon name="arrow-back-outline" size={20} color={colors.BottomButton} />
     </TouchableOpacity>
@@ -34,4 +34,4 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
 });
-export default JournalScreen
+export default BreathingScreen

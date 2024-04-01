@@ -12,8 +12,8 @@ import colors from '../constants/colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 
-import MeditationScreen from '../screens/mainFeatures/MeditationScreen';
-import JournalScreen from '../screens/mainFeatures/JournalScreen';
+import MeditationScreen from '../screens/mainFeatures/Meditation/MeditationScreen';
+import JournalScreen from '../screens/mainFeatures/Journaling/JournalScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();

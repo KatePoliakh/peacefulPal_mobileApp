@@ -15,15 +15,19 @@ import SettingsScreen from '../screens/sideTab/SettingsScreen';
 import colors from '../constants/colors';
 import TabNavigator from './TabNavigator';
 
-import BreathingScreen from '../screens/mainFeatures/BreathingScreen';
-import MeditationScreen from '../screens/mainFeatures/MeditationScreen';
-import GamesScreen from '../screens/mainFeatures/GamesScreen';
-import JournalScreen from '../screens/mainFeatures/JournalScreen';
+import BreathingScreen from '../screens/mainFeatures/Breathing/BreathingScreen';
+import MeditationScreen from '../screens/mainFeatures/Meditation/MeditationScreen';
+import GamesScreen from '../screens/mainFeatures/Games/GamesScreen';
+import JournalScreen from '../screens/mainFeatures/Journaling/JournalScreen';
 
 import CalmnessScreen from '../screens/suggestions/CalmnessScreen';
 import FocusedScreen from '../screens/suggestions/FocusedScreen';
 import HappinessScreen from '../screens/suggestions/HappinessScreen';
 import RelaxfulScreen from '../screens/suggestions/RelaxfulScreen';
+
+import BubbleGame from '../screens/mainFeatures/Games/BubbleGame';
+import NumbersGame from '../screens/mainFeatures/Games/NumbersGame';
+import SwingGame from '../screens/mainFeatures/Games/SwingGame';
 
 
 const Stack = createNativeStackNavigator();
@@ -45,6 +49,8 @@ const HomeStack = () => {
       <Stack.Screen name="FocusedScreen" component={FocusedScreen} />
       <Stack.Screen name="HappinessScreen" component={HappinessScreen} />
       <Stack.Screen name="RelaxfulScreen" component={RelaxfulScreen} />
+
+       
 
     </Stack.Navigator>
   );

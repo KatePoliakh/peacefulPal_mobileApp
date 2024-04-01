@@ -1,16 +1,10 @@
 import React from "react"
-import { StyleSheet, Image, Text, View, ImageBackground, TouchableOpacity } from "react-native"
+import { StyleSheet, Image, Text, View, TouchableOpacity } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import colors from "../constants/colors"
 import { windowWidth, windowHeight } from '../constants/dimensions'; 
 import { ScrollView } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
-import { navigation } from '@react-navigation/native';
-
-
-
-
-
 
 export default function Home({navigation}) {
   return (
