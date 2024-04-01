@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {
   SafeAreaView,
   View,
@@ -7,21 +7,38 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
-
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import colors from '../../constants/colors';
 import { windowWidth, windowHeight } from '../../constants/dimensions';
-
 
 import InputField from '../../components/InputField';
 import CustomButton from '../../components/CustomButton';
 import { AuthContext } from '../../context/AuthContext';
-//import { RFValue } from 'react-native-responsive-fontsize';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 
 function AuthPage ({navigation}){
   const {login} = useContext(AuthContext);
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState(null);
+  const validateEmail = (email) => {
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  };
+
+  const handleLogin = () => {
+    // Validate the user's input
+    if (!validateEmail(email)) {
+      setErrorMessage('Please enter a valid email.');
+      return;
+    }
+    if (password === '') {
+      setErrorMessage('Password cannot be empty.');
+      return;
+    }
+
+  };
   return (
     
     <SafeAreaView style={styles.authPage}>
@@ -42,15 +59,19 @@ function AuthPage ({navigation}){
         <InputField
           label={'Email ID'}
           keyboardType="email-address"
+          value={email}
+          onChangeText={setEmail}
         />
 
         <InputField
           label={'Password'}
           inputType="password"
-          fieldButtonLabel={"Forgot?"}
+          //fieldButtonLabel={"Forgot?"}
           fieldButtonFunction={() => {}}
+          value={password}
         />
         
+        {errorMessage && <Text style={styles.error}>{errorMessage}</Text>}
         <CustomButton label={"Login"} onPress={() => {login()}} />
 
         <View style={styles.rowView}>

@@ -4,15 +4,11 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 
 import HomePage from '../screens/HomePage';
-import FavoriteScreen from '../screens/bottomTab/FavoriteScreen';
+import HabitTracker from '../screens/bottomTab/HabitTracker';
 import GameDetailsScreen from '../screens/bottomTab/GameDetailsScreen';
-import Startpage from '../screens/StartPage';
 import colors from '../constants/colors';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import Feather from 'react-native-vector-icons/Feather';
-
-import MeditationScreen from '../screens/mainFeatures/Meditation/MeditationScreen';
 import JournalScreen from '../screens/mainFeatures/Journaling/JournalScreen';
 
 const Tab = createBottomTabNavigator();
@@ -73,8 +69,8 @@ const TabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Favorite"
-        component={FavoriteScreen}
+        name="HabitTracker"
+        component={HabitTracker}
         options={{
           tabBarIcon: ({color, size}) => (
             <Ionicons name="heart-outline" color={color} size={size} />
