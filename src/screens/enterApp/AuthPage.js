@@ -23,21 +23,21 @@ function AuthPage ({navigation}){
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
   const validateEmail = (email) => {
-    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
   };
 
   const handleLogin = () => {
     // Validate the user's input
     if (!validateEmail(email)) {
-      setErrorMessage('Please enter a valid email.');
+      alert('Please enter a valid email.');
       return;
     }
     if (password === '') {
-      setErrorMessage('Password cannot be empty.');
+      alert('Password cannot be empty.');
       return;
     }
-
+    login();
   };
   return (
     
@@ -83,7 +83,7 @@ function AuthPage ({navigation}){
       </View>
     </SafeAreaView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   authPage: {
@@ -94,11 +94,11 @@ const styles = StyleSheet.create({
   },
   BgCircle: {
     position: "absolute",
-    top: "40%",
+    top: "30%",
     left: "-40%",
-    width: windowWidth, 
-    height: windowWidth, 
-    borderRadius: (windowWidth) / 2, 
+    width: windowWidth,
+    height: windowHeight * 0.5,
+    borderRadius: (windowWidth) / 2,
     backgroundColor: colors.StartPageCircle,
   },
   WeclomeTitle: {
@@ -107,17 +107,16 @@ const styles = StyleSheet.create({
     paddingTop: '30%',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingLeft: '1%', 
   },
   Title: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     color: colors.white,
-    fontSize: "60px",
-    lineHeight: "70px",
-    fontWeight: "700",
+    fontSize: RFValue(55),
+    fontWeight: '700',
     textAlign: "center",
+    lineHeight: '65%',
   },
   container: {
     paddingHorizontal: 25,
@@ -128,11 +127,10 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   loginText: {
-    //fontFamily: 'Roboto-Medium',
-    fontSize: 28,
+    fontSize: RFValue(28),
     fontWeight: '800',
     color: colors.white,
-    marginBottom: 30,
+    marginBottom: '40%',
   },
   centeredText: {
     textAlign: 'center', 
