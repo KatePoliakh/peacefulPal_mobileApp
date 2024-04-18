@@ -5,7 +5,7 @@ import colors from '../../../constants/colors';
 import { windowHeight, windowWidth } from '../../../constants/dimensions';
 
 const BubbleGame = ({ navigation }) => {
-  /*const [bubbles, setBubbles] = useState([]);
+  const [bubbles, setBubbles] = useState([]);
 
   useEffect(() => {
     const bubbleInterval = setInterval(() => {
@@ -53,7 +53,7 @@ const BubbleGame = ({ navigation }) => {
         ))}
       </View>
     </SafeAreaView>
-  );*/
+  );
 };
 
 const styles = StyleSheet.create({

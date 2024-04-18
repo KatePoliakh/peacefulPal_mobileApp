@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, TextInput, Button} from 'react-native'
+import {Text, StyleSheet, TouchableOpacity, SafeAreaView, TextInput, View, Button} from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'; // make sure to install this package
 import colors from '../../../constants/colors';
 import { windowHeight, windowWidth } from '../../../constants/dimensions';
 import ConfettiCannon from 'react-native-confetti-cannon';
+
+import {RFValue} from "react-native-responsive-fontsize";
+import CustomButton from "../../../components/CustomButton";
 const NumbersGame = ({ navigation }) => {
-};
-  /*const [num1, setNum1] = useState(Math.floor(Math.random() * 10));
+
+  const [num1, setNum1] = useState(Math.floor(Math.random() * 10));
   const [num2, setNum2] = useState(Math.floor(Math.random() * 10));
   const [answer, setAnswer] = useState('');
   const [showConfetti, setShowConfetti] = useState(false);
@@ -19,7 +22,7 @@ const NumbersGame = ({ navigation }) => {
         setNum1(Math.floor(Math.random() * 10));
         setNum2(Math.floor(Math.random() * 10));
         setAnswer('');
-      }, 2000);
+      }, 3000);
     } else {
       alert('Wrong answer. Try again!');
       setAnswer('');
@@ -28,22 +31,24 @@ const NumbersGame = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
     
-    
-    <TouchableOpacity style={styles.returnButton} onPress={() => navigation.goBack()}>
-    <Icon name="arrow-back-outline" size={20} color={colors.BottomButton} />
-    </TouchableOpacity>
-  
 
-  <Text style={styles.header}>Arithmetic Game</Text>
-      <Text style={styles.question}>{num1} + {num2} = ?</Text>
-      <TextInput
-        style={styles.input}
-        keyboardType="numeric"
-        value={answer}
-        onChangeText={text => setAnswer(text)}
-      />
-      <Button title="Submit" onPress={handleAnswer} />
-      {showConfetti && <ConfettiCannon count={200} origin={{x: -10, y: 0}} />}
+        <TouchableOpacity style={styles.returnButton} onPress={() => navigation.goBack()}>
+             <Icon name="arrow-back-outline" size={20} color={colors.BottomButton} />
+        </TouchableOpacity>
+  
+        <View style={styles.game}>
+            <Text style={styles.header}>Arithmetic Game</Text>
+            <Text style={styles.question}>{num1} + {num2} = ?</Text>
+            <TextInput
+            style={styles.input}
+            keyboardType="numeric"
+            returnKeyType="done"
+            value={answer}
+            onChangeText={text => setAnswer(text)}
+        />
+            <CustomButton label={'Submit'} onPress={handleAnswer} />
+            {showConfetti && <ConfettiCannon count={200} origin={{x: -10, y: 0}} />}
+        </View>
   </SafeAreaView>
   )
 }
@@ -55,30 +60,40 @@ const styles = StyleSheet.create({
     marginTop: windowHeight * 0.01, // 1% of screen height
   },
   buttonText: {
-    color: colors.BottomButton,
-    marginLeft: 5,
+    color: colors.white,
+    marginLeft: '5%',
   },
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+      height: windowHeight,
+      width: windowWidth,
+      backgroundColor: colors.startPageBg,
   },
+    game: {
+        alignItems: "center",
+        top: '20%',
+    },
   header: {
-    fontSize: 24,
+    fontSize: RFValue(25),
+    textAlign: 'center',
     fontWeight: 'bold',
-    marginBottom: 20,
+    marginBottom: '10%',
+    color: colors.BottomButton
   },
   question: {
-    fontSize: 20,
-    marginBottom: 20,
+    fontSize: RFValue(20),
+    marginBottom: '5%',
   },
   input: {
     width: '80%',
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 20,
-    paddingHorizontal: 10,
+    height: '15%',
+    borderColor: null,
+    borderWidth: '1%',
+    marginBottom: '5%',
+    paddingHorizontal: '10%',
   },
-});*/
+  bottomButton: {
+    backgroundColor: colors.BottomButton,
+    textDecorationColor: colors.white,
+  },
+});
 export default NumbersGame;

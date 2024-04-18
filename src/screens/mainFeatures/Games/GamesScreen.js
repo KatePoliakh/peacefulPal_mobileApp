@@ -15,7 +15,7 @@ const GamesScreen = ({ navigation }) => {
       <View style={styles.BgCircle3}></View>
       <View style={styles.BgCircle4}></View>
         <TouchableOpacity style={styles.returnButton} onPress={() => navigation.goBack()}>
-          <Icon name="arrow-back-outline"  styles={{fontSize : 22}}  color={colors.BottomButton} />
+          <Icon name="arrow-back-outline"  styles={{fontSize : 100}}  color={colors.BottomButton} />
         </TouchableOpacity>
         <Text style={styles.Title}>Games</Text>
         <View style={{ flexDirection: 'row', left: windowWidth * 0.02}}>
@@ -25,8 +25,11 @@ const GamesScreen = ({ navigation }) => {
               style={styles.TasksButton}>
               <Text style={styles.buttonText}>Bubbles</Text>
               <Image
-                style={styles.ButtonIcon}
-                source={require('../../../assets/images/gamepad_icon.png')}
+                style={{flex: 1,
+                  width: null,
+                  height: null,
+                  resizeMode: 'contain'}}
+                source={require('../../../assets/images/gamesIcons/bubbles.png')}
 
               />
             </TouchableOpacity>
@@ -38,7 +41,7 @@ const GamesScreen = ({ navigation }) => {
               <Text style={styles.buttonText}>Arithmetic</Text>
               <Image
                 style={styles.ButtonIcon}
-                source={require('../../../assets/images/gamepad_icon.png')}
+                source={require('../../../assets/images/gamesIcons/arithmetic.png')}
               />
             </TouchableOpacity>
           </View>
@@ -98,14 +101,15 @@ const styles = StyleSheet.create({
   buttonText: {
     color: colors.BottomButton,
     width: "100%",
-    fontWeight: "300",
+    fontWeight: '400',
     fontSize: RFValue(20),
-    
+    top: windowHeight * 0.03
   },
   ButtonIcon: {
-    width: windowWidth * 0.2, // 10% of window width
-    height: windowHeight * 0.1, // 10% of window height
-    
+    flex: 1,
+    width: null,
+    height: null,
+    resizeMode: 'contain'
   },
   BgCircle1: {
     position: "absolute",
