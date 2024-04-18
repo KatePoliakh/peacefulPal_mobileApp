@@ -4,6 +4,7 @@ import colors from "../constants/colors";
 import { windowWidth, windowHeight } from '../constants/dimensions'; 
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TouchableOpacity } from "react-native";
+import {RFValue}   from "react-native-responsive-fontsize";
 
 
 export default function Startpage({navigation}) {
@@ -39,14 +40,14 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: "30%",
     left: "-40%",
-    width: windowWidth, 
-    height: windowWidth, 
+    width: windowWidth,
+    height: windowHeight * 0.5,
     borderRadius: (windowWidth) / 2, 
     backgroundColor: colors.StartPageCircle,
   },
   Startpagegirl: {
     position: "absolute",
-    bottom: 0,
+    bottom: '0%',
     alignItems: 'center',
   },
   WeclomeTitle: {
@@ -55,17 +56,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingTop: '30%',
-    //fontFamily: 'Raleway',  
   },
   Title: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     color: colors.white,
-    fontSize: "60px",
-    lineHeight: "70px",
-    //fontFamily: 'Raleway',
-    fontWeight: "700",
+    fontSize: RFValue(60),
+    lineHeight: '65%',
+    fontWeight: '700',
     textAlign: "center",
   },
   BottomButton: {
@@ -87,10 +86,9 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     color: colors.white,
-    fontSize: "25px",
-    lineHeight: "25px",
-    //fontFamily: 'Raleway',
-    fontWeight: "500",
+    fontSize: RFValue(25),
+    lineHeight: '25',
+    fontWeight: '500',
     textAlign: "center",
   },
 })

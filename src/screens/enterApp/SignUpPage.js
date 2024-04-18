@@ -17,9 +17,9 @@ import { windowWidth, windowHeight } from '../../constants/dimensions';
 import colors from '../../constants/colors';
 
 const RegisterScreen = ({navigation}) => {
-  const [date, setDate] = useState(new Date());
+  //const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
-  const [dobLabel, setDobLabel] = useState('Date of Birth');
+  //const [dobLabel, setDobLabel] = useState('Date of Birth');
 
   return (
     <SafeAreaView style={styles.signUpPage}>
@@ -41,30 +41,9 @@ const RegisterScreen = ({navigation}) => {
         <InputField label={'Password'} inputType="password" />
         <InputField label={'Confirm Password'} inputType="password" />
 
-        <View style={styles.datePickerView}>
-          <TouchableOpacity onPress={() => setOpen(true)}>
-            <Text style={styles.datePickerText}>
-              {dobLabel}
-            </Text>
-          </TouchableOpacity>
-        </View>
+        
 
-        <DatePicker
-          modal
-          open={open}
-          date={date}
-          mode={'date'}
-          maximumDate={new Date('2005-01-01')}
-          minimumDate={new Date('1980-01-01')}
-          onConfirm={date => {
-            setOpen(false);
-            //setDate(date);
-            setDobLabel(date.toDateString());
-          }}
-          onCancel={() => {
-            setOpen(false);
-          }}
-        />
+        
 
         <CustomButton label={'Register'} onPress={() => {}} />
 
@@ -107,9 +86,9 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     color: colors.white,
-    fontSize: "60px",
-    lineHeight: "70px",
-    fontWeight: "700",
+    fontSize: 60,
+    lineHeight: 70,
+    fontWeight: '700',
     textAlign: "center",
   },
   scrollView: {

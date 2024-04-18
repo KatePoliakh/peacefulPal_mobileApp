@@ -22,13 +22,7 @@ const HomeStack = () => {
         component={HomePage}
         options={{headerShown: false}}
       />
-      <Stack.Screen
-        name="GameDetails"
-        component={GameDetailsScreen}
-        options={({route}) => ({
-          title: route.params?.title,
-        })}
-      />
+      
       
     </Stack.Navigator>
   );
@@ -53,7 +47,7 @@ const TabNavigator = () => {
             backgroundColor: colors.startPageBg,
           },
           tabBarIcon: ({color, size}) => (
-            <Ionicons name="home-outline" color={color} size={size} />
+            <Ionicons name="home-outline" color={color}  styles={{fontSize : 22}}  />
           ),
         })}
       />
@@ -64,7 +58,7 @@ const TabNavigator = () => {
           //tabBarBadge: 3,
           //tabBarBadgeStyle: {backgroundColor: 'yellow'},
           tabBarIcon: ({color, size}) => (
-            <Ionicons name="book-outline" color={color} size={size} />
+            <Ionicons name="book-outline" color={color}  styles={{fontSize : 22}}  />
     ),
         }}
       />
@@ -73,7 +67,8 @@ const TabNavigator = () => {
         component={HabitTracker}
         options={{
           tabBarIcon: ({color, size}) => (
-            <Ionicons name="heart-outline" color={color} size={size} />
+            <Ionicons name="calendar-outline" color={color}  styles={{fontSize : 22}}  />
+            
           ),
         }}
       />

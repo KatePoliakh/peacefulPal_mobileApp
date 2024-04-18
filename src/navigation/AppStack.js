@@ -7,10 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import CustomDrawer from '../components/CustomDrawer';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
-import ProfileScreen from '../screens/sideTab/ProfileScreen';
 import EmergencyHelpScreen from '../screens/sideTab/EmergencyHelpScreen';
-import MomentsScreen from '../screens/sideTab/MomentsScreen';
 import SettingsScreen from '../screens/sideTab/SettingsScreen';
 import colors from '../constants/colors';
 import TabNavigator from './TabNavigator';
@@ -29,6 +26,10 @@ import BubbleGame from '../screens/mainFeatures/Games/BubbleGame';
 import NumbersGame from '../screens/mainFeatures/Games/NumbersGame';
 import SwingGame from '../screens/mainFeatures/Games/SwingGame';
 
+import Habit from '../components/Habit';
+import HabitTracker from '../screens/bottomTab/HabitTracker';
+import HomePage from '../screens/HomePage';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -38,7 +39,8 @@ const Drawer = createDrawerNavigator();
 const HomeStack = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Home" component={TabNavigator} />
+      <Stack.Screen name="Home1" component={TabNavigator} />
+      <Stack.Screen name="Home2" component={HomePage} />
 
       <Stack.Screen name="MeditationScreen" component={MeditationScreen} />
       <Stack.Screen name="GamesScreen" component={GamesScreen} />
@@ -53,6 +55,10 @@ const HomeStack = () => {
       
       <Stack.Screen name="NumbersGame" component={NumbersGame} />
       <Stack.Screen name="SwingGame" component={SwingGame} />
+      <Stack.Screen name="BubbleGame" component={BubbleGame} />
+      
+      <Stack.Screen name="HabitTracker" component={HabitTracker} />
+      <Stack.Screen name="Habit" component={Habit}/>
 
     </Stack.Navigator>
   );
@@ -69,7 +75,6 @@ const AppStack = () => {
         drawerInactiveTintColor: colors.black,
         drawerLabelStyle: {
           marginLeft: -25,
-          fontFamily: 'Roboto-Medium',
           fontSize: 15,
         },
       }}>
@@ -78,42 +83,30 @@ const AppStack = () => {
         component={HomeStack}
         options={{
           drawerIcon: ({ color }) => (
-            <Ionicons name="home-outline" size={22} color={color} />
+            <Ionicons name="home-outline" styles={{fontSize : 22}} color={color} />
           ),
         }} />
-      <Drawer.Screen
-        name="Profile //TODO"
-        component={ProfileScreen}
-        options={{
-          drawerIcon: ({ color }) => (
-            <Ionicons name="person-outline" size={22} color={color} />
-          ),
-        }} />
+      
       <Drawer.Screen
         name="Emergency Help"
         component={EmergencyHelpScreen}
         options={{
           drawerIcon: ({ color }) => (
-            <Ionicons name="chatbox-ellipses-outline" size={22} color={color} />
+            <Ionicons name="chatbox-ellipses-outline"  styles={{fontSize : 22}}  color={color} />
           ),
         }} />
+    
       <Drawer.Screen
-        name="Moments //TODO"
-        component={MomentsScreen}
-        options={{
-          drawerIcon: ({ color }) => (
-            <Ionicons name="timer-outline" size={22} color={color} />
-          ),
-        }} />
-      <Drawer.Screen
-        name="Settings //TODO"
+        name="Settings"
         component={SettingsScreen}
         options={{
           drawerIcon: ({ color }) => (
-            <Ionicons name="settings-outline" size={22} color={color} />
+            <Ionicons name="settings-outline"  styles={{fontSize : 22}}  color={color} />
           ),
         }} />
+        
     </Drawer.Navigator>
+    
     
   );
 };
