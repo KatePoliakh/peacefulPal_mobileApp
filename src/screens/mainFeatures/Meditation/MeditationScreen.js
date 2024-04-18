@@ -31,7 +31,7 @@ const MeditationScreen = ({ navigation }) => {
   <SafeAreaView style={styles.container}>
    
       <TouchableOpacity style={styles.returnButton} onPress={() => navigation.goBack()}>
-        <Icon name="arrow-back-outline" size={20} color={colors.BottomButton} />
+        <Icon name="arrow-back-outline"  styles={{fontSize : 22}}  color={colors.BottomButton} />
       </TouchableOpacity>
     
         <Text style={styles.title}>Meditation</Text>

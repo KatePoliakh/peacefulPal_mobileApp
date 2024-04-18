@@ -8,7 +8,7 @@ const ProfileScreen = () => {
     <View style={styles.container}>
       <Image 
         style={styles.profileImage}
-        source={{uri: 'https://example.com/profile.jpg'}} // replace with the actual image URL
+        source={{uri: 'https://example.com/profile.jpg'}} 
       />
       <Text style={styles.name}>John Doe</Text>
       <Text style={styles.email}>john.doe@example.com</Text>
@@ -31,16 +31,16 @@ const styles = StyleSheet.create({
     marginBottom: height * 0.02, // 2% of screen height
   },
   name: {
-    fontSize: width * 0.05, // 5% of screen width
+    //fontSize: width * 0.05, // 5% of screen width
     fontWeight: 'bold',
   },
   email: {
-    fontSize: width * 0.04, // 4% of screen width
+    //fontSize: width * 0.04, // 4% of screen width
     color: 'gray',
     marginBottom: height * 0.01, // 1% of screen height
   },
   bio: {
-    fontSize: width * 0.04, // 4% of screen width
+    //fontSize: width * 0.04, // 4% of screen width
     textAlign: 'center',
   },
 });
