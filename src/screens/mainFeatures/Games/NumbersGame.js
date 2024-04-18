@@ -5,7 +5,8 @@ import colors from '../../../constants/colors';
 import { windowHeight, windowWidth } from '../../../constants/dimensions';
 import ConfettiCannon from 'react-native-confetti-cannon';
 const NumbersGame = ({ navigation }) => {
-  const [num1, setNum1] = useState(Math.floor(Math.random() * 10));
+};
+  /*const [num1, setNum1] = useState(Math.floor(Math.random() * 10));
   const [num2, setNum2] = useState(Math.floor(Math.random() * 10));
   const [answer, setAnswer] = useState('');
   const [showConfetti, setShowConfetti] = useState(false);
@@ -79,5 +80,5 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     paddingHorizontal: 10,
   },
-});
-export default NumbersGame
+});*/
+export default NumbersGame;

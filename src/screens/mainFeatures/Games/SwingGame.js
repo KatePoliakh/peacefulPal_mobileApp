@@ -1,97 +1,80 @@
-import React, { useState, useRef } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView} from 'react-native'
-import Icon from 'react-native-vector-icons/Ionicons'; // make sure to install this package
-import colors from '../../../constants/colors';
-import { windowHeight, windowWidth } from '../../../constants/dimensions';
+import React, { useState, useRef } from 'react';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import { Animated, Easing } from 'react-native';
 
+const SwingGame = () => {
+  /*const [angle, setAngle] = useState(0);
+  const seesawAnimation = useRef(new Animated.Value(0)).current;
 
-const SwingGame = ({ navigation }) => {
-  const [angle, setAngle] = useState(0);
-  const swingRef = useRef(null);
-
-  const startSwinging = () => {
-    if (!swingRef.current) {
-      swingRef.current = setInterval(() => {
-        setAngle((prevAngle) => {
-          // This will cause the swing to slowly return to the horizontal position
-          const newAngle = prevAngle * 0.95;
-  
-          // This will add some randomness to the swing
-          const randomAngle = (Math.random() - 0.5) * 10;
-  
-          return newAngle + randomAngle;
-        });
-      }, 10);
-    }
+  const startAnimation = () => {
+    Animated.timing(seesawAnimation, {
+      toValue: 1,
+      duration: 2000,
+      easing: Easing.linear,
+      useNativeDriver: true,
+    }).start();
   };
 
-  const stopSwinging = () => {
-    if (swingRef.current) {
-      clearInterval(swingRef.current);
-      swingRef.current = null;
-    }
+  const resetAnimation = () => {
+    seesawAnimation.setValue(0);
+    setAngle(0);
   };
 
-  const handleTouch = () => {
-    if (angle >= 1 && angle <= 359) {
-      stopSwinging();
-    }
+  const pushSeesaw = (direction) => {
+    Animated.timing(seesawAnimation, {
+      toValue: direction === 'left' ? 0.2 : 0.8,
+      duration: 500,
+      easing: Easing.linear,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  seesawAnimation.addListener(({ value }) => {
+    setAngle(value * 180 - 90);
+  });
+
+  const seesawStyle = {
+    transform: [{ rotate: `${angle}deg` }],
   };
 
   return (
-    <SafeAreaView>
     <View style={styles.container}>
-    <TouchableOpacity style={styles.returnButton} onPress={() => navigation.goBack()}>
-    <Icon name="arrow-back-outline" size={20} color={colors.BottomButton} />
-    </TouchableOpacity>
-    <Text  style={styles.header}>Swing Game </Text>
-      <TouchableOpacity
-        style={styles.swing}
-        onPressIn={startSwinging}
-        onPressOut={stopSwinging}
-        onTouchStart={handleTouch}
-      >
-        <Text style={styles.swingText}>Keep the swings balanced</Text>
-        <View style={[styles.swingSet, { transform: [{ rotate: `${angle}deg` }] }]} />
-      </TouchableOpacity>
-  </View>
-  </SafeAreaView>
-  )
-}
+      <TouchableOpacity onPress={() => pushSeesaw('left')} style={styles.leftButton} />
+      <TouchableOpacity onPress={() => pushSeesaw('right')} style={styles.rightButton} />
+      <Animated.View style={[styles.seesaw, seesawStyle]} />
+    </View>
+  );*/
+};
 
 const styles = StyleSheet.create({
   container: {
-    
-  },
-  returnButton: {
-    padding: windowWidth * 0.025, // 2.5% of screen width
-    borderRadius: windowWidth * 0.0125, // 1.25% of screen width
-    marginTop: windowHeight * 0.01, // 1% of screen height
-  },
-  buttonText: {
-    color: colors.BottomButton,
-    marginLeft: 5,
-  },
-  swing: {
-    alignItems: 'center',
+    flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
   },
-  swingText: {
-    marginBottom: 20,
-    fontSize: 16,
-    textAlign: 'center',
+  leftButton: {
+    position: 'absolute',
+    bottom: 20,
+    left: 20,
+    width: 50,
+    height: 50,
+    backgroundColor: 'blue',
   },
-  swingSet: {
-    width: 10,
-    height: 100,
+  rightButton: {
+    position: 'absolute',
+    bottom: 20,
+    right: 20,
+    width: 50,
+    height: 50,
+    backgroundColor: 'red',
+  },
+  seesaw: {
+    width: 200,
+    height: 20,
     backgroundColor: 'brown',
-    borderRadius: 5,
-  },
-  header: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    textAlign: 'center',
+    position: 'absolute',
+    bottom: 100,
   },
 });
-export default SwingGame
+
+export default SwingGame;

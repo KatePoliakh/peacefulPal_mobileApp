@@ -15,13 +15,13 @@ const GamesScreen = ({ navigation }) => {
       <View style={styles.BgCircle3}></View>
       <View style={styles.BgCircle4}></View>
         <TouchableOpacity style={styles.returnButton} onPress={() => navigation.goBack()}>
-          <Icon name="arrow-back-outline" size={20} color={colors.BottomButton} />
+          <Icon name="arrow-back-outline"  styles={{fontSize : 22}}  color={colors.BottomButton} />
         </TouchableOpacity>
         <Text style={styles.Title}>Games</Text>
         <View style={{ flexDirection: 'row', left: windowWidth * 0.02}}>
           <View style={styles.gameButton}>
             <TouchableOpacity 
-             // onPress={() => navigation.navigate('BubbleGame')}
+              onPress={() => navigation.navigate('BubbleGame')}
               style={styles.TasksButton}>
               <Text style={styles.buttonText}>Bubbles</Text>
               <Image
