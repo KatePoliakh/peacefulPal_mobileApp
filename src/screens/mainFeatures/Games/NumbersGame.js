@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {Text, StyleSheet, TouchableOpacity, SafeAreaView, TextInput, View, Button} from 'react-native'
-import Icon from 'react-native-vector-icons/Ionicons'; // make sure to install this package
+import Icon from 'react-native-vector-icons/FontAwesome';
 import colors from '../../../constants/colors';
 import { windowHeight, windowWidth } from '../../../constants/dimensions';
 import ConfettiCannon from 'react-native-confetti-cannon';
@@ -30,10 +30,8 @@ const NumbersGame = ({ navigation }) => {
   };
   return (
     <SafeAreaView style={styles.container}>
-    
-
         <TouchableOpacity style={styles.returnButton} onPress={() => navigation.goBack()}>
-             <Icon name="arrow-back-outline" size={20} color={colors.BottomButton} />
+            <Icon name="arrow-left" size={RFValue(20)} color={colors.BottomButton} />
         </TouchableOpacity>
   
         <View style={styles.game}>
@@ -49,7 +47,7 @@ const NumbersGame = ({ navigation }) => {
             <CustomButton label={'Submit'} onPress={handleAnswer} />
             {showConfetti && <ConfettiCannon count={200} origin={{x: -10, y: 0}} />}
         </View>
-  </SafeAreaView>
+    </SafeAreaView>
   )
 }
 
@@ -73,11 +71,11 @@ const styles = StyleSheet.create({
         top: '20%',
     },
   header: {
-    fontSize: RFValue(25),
+    fontSize: RFValue(40),
     textAlign: 'center',
     fontWeight: 'bold',
-    marginBottom: '10%',
-    color: colors.BottomButton
+    marginBottom: '5%',
+    color: colors.white
   },
   question: {
     fontSize: RFValue(20),

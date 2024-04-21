@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import colors from '../../../constants/colors';
 import { windowHeight, windowWidth } from '../../../constants/dimensions';
+import {RFValue} from "react-native-responsive-fontsize";
 
 const BubbleGame = ({ navigation }) => {
   const [bubbles, setBubbles] = useState([]);
@@ -11,8 +12,8 @@ const BubbleGame = ({ navigation }) => {
     const bubbleInterval = setInterval(() => {
       const newBubble = {
         id: Math.random().toString(),
-        positionX: Math.random() * (windowWidth - 100) + 50, // Adjusted range for X position
-        positionY: Math.random() * (windowHeight - 100) + 50, // Adjusted range for Y position
+        positionX: Math.random() * (windowWidth - 100) + 50,
+        positionY: Math.random() * (windowHeight - 100) + 50,
         color: generateRandomColor(),
       };
 
@@ -39,7 +40,7 @@ const BubbleGame = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity style={styles.returnButton} onPress={() => navigation.goBack()}>
-          <Icon name="arrow-back-outline" size={20} color={colors.BottomButton} />
+          <Icon name="arrow-left" size={RFValue(20)} color={colors.BottomButton} />
         </TouchableOpacity>
         <Text style={styles.headerText}>Bubble Game</Text>
       </View>
@@ -59,22 +60,23 @@ const BubbleGame = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.Background,
+    backgroundColor: colors.white,
+    overflow: "hidden",
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingVertical: 10,
+    paddingHorizontal: windowWidth * 0.05,
+    paddingVertical: windowHeight * 0.02,
+    color: colors.BottomButton,
   },
   returnButton: {
-    marginRight: 10,
-    padding: 10,
-    borderRadius: 20,
-    //backgroundColor: colors.BottomButton,
+    marginRight: windowWidth * 0.02, // 2% of the window width
+    padding: windowWidth * 0.05, // 5% of the window width
+    borderRadius: windowWidth * 0.1, // 10% of the window width
   },
   headerText: {
-    fontSize: 20,
+    fontSize: windowWidth * 0.06, // 6% of the window width
     fontWeight: 'bold',
     color: colors.Text,
   },
@@ -85,9 +87,9 @@ const styles = StyleSheet.create({
   },
   bubble: {
     position: 'absolute',
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: windowWidth * 0.1,
+    height: windowWidth * 0.1, // 10% of the window width
+    borderRadius: windowWidth * 0.05, // 5% of the window width
   },
 });
 
