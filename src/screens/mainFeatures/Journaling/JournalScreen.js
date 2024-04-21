@@ -1,147 +1,112 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Button, FlatList, StyleSheet, ScrollView, Platform, DatePickerIOS, DatePickerAndroid, Alert } from 'react-native';
+import {View, Text, StyleSheet, ScrollView, TouchableOpacity, SafeAreaView} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { format } from 'date-fns';
+import { useNavigation } from '@react-navigation/native';
+import {windowHeight, windowWidth} from "../../../constants/dimensions";
+import {RFValue} from "react-native-responsive-fontsize";
+import colors from "../../../constants/colors";
+import Icon from "react-native-vector-icons/FontAwesome";
 
-const MoodTrackerApp = () => {
-  /*const [mood, setMood] = useState('');
-  const [description, setDescription] = useState('');
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [moodEntries, setMoodEntries] = useState([]);
+const JournalPage = () => {
+  const [journalEntries, setJournalEntries] = useState([]);
+  const navigation = useNavigation();
 
   useEffect(() => {
-    loadMoodEntries();
+    // Load journal entries from AsyncStorage when component mounts
+    loadJournalEntries();
   }, []);
 
-  const loadMoodEntries = async () => {
+  const loadJournalEntries = async () => {
     try {
-      const storedMoodEntries = await AsyncStorage.getItem('@mood_entries');
-      if (storedMoodEntries !== null) {
-        setMoodEntries(JSON.parse(storedMoodEntries));
+      const storedEntries = await AsyncStorage.getItem('journalEntries');
+      if (storedEntries !== null) {
+        setJournalEntries(JSON.parse(storedEntries));
       }
     } catch (error) {
-      console.error('Error loading mood entries:', error);
+      console.error('Error loading journal entries:', error);
     }
   };
 
-  const saveMoodEntry = async () => {
-    if (mood.trim() === '') {
-      Alert.alert('Empty Mood', 'Please enter your mood.');
-      return;
-    }
-    try {
-      const newEntry = {
-        id: Date.now().toString(),
-        mood: mood.trim(),
-        description: description.trim(),
-        date: selectedDate,
-      };
-      const updatedMoodEntries = [...moodEntries, newEntry];
-      setMoodEntries(updatedMoodEntries);
-      await AsyncStorage.setItem('@mood_entries', JSON.stringify(updatedMoodEntries));
-      setMood('');
-      setDescription('');
-    } catch (error) {
-      console.error('Error saving mood entry:', error);
-    }
-  };
-
-  const deleteMoodEntry = async (id) => {
-    try {
-      const updatedMoodEntries = moodEntries.filter((entry) => entry.id !== id);
-      setMoodEntries(updatedMoodEntries);
-      await AsyncStorage.setItem('@mood_entries', JSON.stringify(updatedMoodEntries));
-    } catch (error) {
-      console.error('Error deleting mood entry:', error);
-    }
-  };
-
-  const showDatePicker = async () => {
-    try {
-      if (Platform.OS === 'android') {
-        const { action, year, month, day } = await DatePickerAndroid.open({
-          date: selectedDate,
-        });
-        if (action !== DatePickerAndroid.dismissedAction) {
-          const newDate = new Date(year, month, day);
-          setSelectedDate(newDate);
-        }
-      } else if (Platform.OS === 'ios') {
-        // Not implemented in this example, you can add DatePickerIOS for iOS.
-        // For simplicity, the iOS date picker is omitted.
-      }
-    } catch (error) {
-      console.error('Error selecting date:', error);
-    }
+  const goToNewEntryPage = () => {
+    navigation.navigate('NewJournalEntry'); // Navigate to the page for adding new journal entry
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.addMoodContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter your mood..."
-          value={mood}
-          onChangeText={(text) => setMood(text)}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Enter description..."
-          value={description}
-          onChangeText={(text) => setDescription(text)}
-        />
-        <View style={styles.datePickerContainer}>
-          <Button title="Select Date" onPress={showDatePicker} />
-          <Text>Date: {format(selectedDate, 'yyyy-MM-dd')}</Text>
-        </View>
-        <Button title="Add Mood" onPress={saveMoodEntry} />
-      </View>
-      <ScrollView>
-        {moodEntries.map((entry) => (
-          <View key={entry.id} style={styles.moodEntry}>
-            <Text style={styles.moodText}>{entry.mood}</Text>
-            <Text>{entry.description}</Text>
-            <Text>Date: {format(new Date(entry.date), 'yyyy-MM-dd')}</Text>
-            <Button title="Delete" onPress={() => deleteMoodEntry(entry.id)} />
-          </View>
-        ))}
-      </ScrollView>
-    </View>
-  );*/
+      <SafeAreaView style={styles.container}>
+        <TouchableOpacity style={styles.returnButton} onPress={() => navigation.goBack()}>
+          <Icon name="arrow-left" size={RFValue(22)} color={colors.BottomButton} />
+        </TouchableOpacity>
+        <ScrollView style={styles.scrollView}>
+          <Text style={styles.heading}>Your Journal</Text>
+          {journalEntries.map((entry, index) => (
+              <View key={index} style={styles.entryContainer}>
+                <Text>{entry.title}</Text>
+                <Text>{entry.content}</Text>
+              </View>
+          ))}
+        </ScrollView>
+        <TouchableOpacity style={styles.addButton} onPress={goToNewEntryPage}>
+          <Text style={styles.addButtonText}>+</Text>
+        </TouchableOpacity>
+      </SafeAreaView>
+  );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: '#fff',
+    width: windowWidth,
+    height: windowHeight,
+    backgroundColor: colors.white,
   },
-  addMoodContainer: {
-    marginBottom: 20,
+  returnButton: {
+    padding: windowWidth * 0.025, // 2.5% of screen width
+    borderRadius: windowWidth * 0.0125, // 1.25% of screen width
+    marginTop: windowHeight * 0.01, // 1% of screen height
   },
-  input: {
-    height: 40,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 10,
-  },
-  datePickerContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  moodEntry: {
-    marginBottom: 10,
-    backgroundColor: '#f9f9f9',
-    padding: 10,
-    borderRadius: 5,
-  },
-  moodText: {
-    fontSize: 16,
+  heading: {
+    fontSize: windowWidth * 0.07, // Adjust based on screen width
     fontWeight: 'bold',
+    marginBottom: windowHeight * 0.02, // Adjust based on screen height
+    top: windowHeight * 0.001,
+    alignSelf: 'center',
+    color: colors.BottomButton,
+  },
+  scrollView: {
+    flex: 1,
+    padding: windowWidth * 0.05, // Adjust based on screen width
+  },
+  entryContainer: {
+    marginBottom: windowWidth * 0.05, // Adjust based on screen width
+    padding: windowWidth * 0.04, // Adjust based on screen width
+    borderWidth: 1,
+    borderColor: 'rgba(0,0,0,0.12)',
+    borderRadius: windowWidth * 0.05, // Adjust based on screen width
+    shadowColor: '#000',
+    shadowOffset: { width: windowWidth * 0.005, height: windowHeight * 0.005 },
+    shadowOpacity: 0.25,
+    shadowRadius: windowWidth * 0.01,
+    elevation: 5,
+  },
+  addButton: {
+    position: 'absolute',
+    top: windowHeight * 0.85,
+    left: windowWidth * 0.85,
+    width: windowWidth * 0.1, // Adjust based on screen width
+    height: windowWidth * 0.1, // Adjust based on screen width
+    borderRadius: windowWidth * 0.05, // Adjust based on screen width
+    backgroundColor: '#A4A4F7',
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: windowWidth * 0.005, height: windowHeight * 0.005 },
+    shadowOpacity: 0.25,
+    shadowRadius: windowWidth * 0.01,
+    elevation: 5,
+  },
+  addButtonText: {
+    color: 'white',
+    fontSize: windowWidth * 0.06, // Adjust based on screen width
   },
 });
 
-export default MoodTrackerApp;
+export default JournalPage;

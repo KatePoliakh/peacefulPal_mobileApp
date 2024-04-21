@@ -1,0 +1,37 @@
+icons:
+<FontAwesomeIcon icon="fa-solid fa-house" /> - home
+
+https://fontawesome.com/icons/house?f=classic&s=solid
+
+=====================================================
+<FontAwesomeIcon icon="fa-solid fa-arrow-left" /> - arrow left
+
+https://fontawesome.com/icons/arrow-left?f=classic&s=solid
+
+=====================================================
+<FontAwesomeIcon icon="fa-solid fa-user" /> - user 
+
+https://fontawesome.com/icons/user?f=classic&s=solid
+
+=====================================================
+<FontAwesomeIcon icon="fa-solid fa-pen-to-square" /> - pen + note
+
+https://fontawesome.com/icons/pen-to-square?f=classic&s=solid
+=====================================================
+<FontAwesomeIcon icon="fa-solid fa-calendar" /> - calendar
+
+https://fontawesome.com/icons/calendar?f=classic&s=solid
+
+=====================================================
+<FontAwesomeIcon icon="fa-solid fa-gear" /> - settings
+
+https://fontawesome.com/icons/gear?f=classic&s=solid
+=====================================================
+<FontAwesomeIcon icon="fa-solid fa-handshake-angle" /> - handshake
+
+https://fontawesome.com/icons/handshake-angle?f=classic&s=solid
+
+=====================================================
+<FontAwesomeIcon icon="fa-solid fa-right-from-bracket" /> - exit 
+
+https://fontawesome.com/icons/right-from-bracket?f=classic&s=solid
