@@ -5,16 +5,14 @@ import {
   View,
   Text,
   TouchableOpacity,
-  StyleSheet, Alert,
+  StyleSheet, Alert, TextInput,
 } from 'react-native';
 
-import DatePicker from 'react-native-date-picker';
 
-import InputField from '../../components/InputField';
 import CustomButton from '../../components/CustomButton';
 import { windowWidth, windowHeight } from '../../constants/dimensions';
-
 import colors from '../../constants/colors';
+import { apiUrl } from  '../../constants/url';
 
 const RegisterScreen = ({navigation}) => {
   const [fullName, setFullName] = useState('');
@@ -22,13 +20,20 @@ const RegisterScreen = ({navigation}) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const handleRegister = async () => {
+    // Check if any field is empty
+    if (!fullName || !email || !password || !confirmPassword) {
+      Alert.alert('Error', 'Please fill in all fields');
+      return;
+    }
+
     // Check if passwords match
     if (password !== confirmPassword) {
       Alert.alert('Error', 'Passwords do not match');
       return;
     }
+
     try {
-      const response = await fetch('https://3a17-95-64-169-174.ngrok-free.app/api/register', {
+      const response = await fetch(`${apiUrl}/api/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -49,6 +54,7 @@ const RegisterScreen = ({navigation}) => {
       Alert.alert('Error', 'An unexpected error occurred');
     }
   };
+
   return (
     <SafeAreaView style={styles.signUpPage}>
       <View style={styles.BgCircle} />
@@ -61,10 +67,29 @@ const RegisterScreen = ({navigation}) => {
         <View style={styles.centeredView}>
         </View>
         <Text style={styles.registerText}>Register</Text>
-        <InputField label={'Full Name'} value={fullName} onChangeText={setFullName}/>
-        <InputField label={'Email ID'} keyboardType="email-address" value={email} onChangeText={setEmail}/>
-        <InputField label={'Password'} inputType="password" value={password} onChangeText={setPassword}/>
-        <InputField label={'Confirm Password'} inputType="password" value={confirmPassword} onChangeText={setConfirmPassword}/>
+        <View style={{direction: 'column'}}>
+        <TextInput style={styles.input}
+                   placeholder="Full Name"
+                   placeholderTextColor="grey"
+                   onChangeText={text => setFullName(text)}
+                   value={fullName}/>
+        <TextInput style={styles.input}
+                   placeholder="Email"
+                   placeholderTextColor="grey"
+                   keyboardType="email-address"
+                   onChangeText={text => setEmail(text)}
+                   value={email}/>
+        <TextInput style={styles.input}
+                   placeholder="Password"
+                   placeholderTextColor="grey"
+                   onChangeText={text => setPassword(text)}
+                   value={password}/>
+        <TextInput style={styles.input}
+                   placeholder="Confirm password"
+                   placeholderTextColor="grey"
+                   onChangeText={text => setConfirmPassword(text)}
+                   value={confirmPassword}/>
+        </View>
 
         <CustomButton label={'Register'} onPress={handleRegister} />
 
@@ -121,37 +146,11 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontWeight: '500',
   },
-  socialMediaView: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: '5%', // Adjusted margin based on percentage
-    width: '100%', // Ensures the social media view takes full width
-  },
-  socialMediaButton: {
-    borderColor: '#ddd',
-    borderWidth: 2,
-    borderRadius: 10,
-    paddingHorizontal: '5%', // Adjusted padding based on percentage
-    paddingVertical: '2%', // Adjusted padding based on percentage
-  },
   centeredText: {
     textAlign: 'center',
     color: colors.BottomButton,
     marginBottom: '5%', // Adjusted margin based on percentage
     width: '100%', // Ensures the text takes full width
-  },
-  datePickerView: {
-    flexDirection: 'row',
-    borderBottomColor: colors.BottomButton,
-    borderBottomWidth: 1,
-    paddingBottom: '2%', // Adjusted padding based on percentage
-    marginBottom: '5%', // Adjusted margin based on percentage
-    width: '100%', // Ensures the date picker view takes full width
-  },
-  datePickerText: {
-    color: '#666',
-    marginLeft: '1%', // Adjusted margin based on percentage
-    marginTop: '1%', // Adjusted margin based on percentage
   },
   loginView: {
     flexDirection: 'row',
@@ -162,6 +161,18 @@ const styles = StyleSheet.create({
   loginText: {
     color: colors.BottomButton,
     fontWeight: '700',
+  },
+  input: {
+    height: windowHeight * 0.07,
+    marginBottom: windowHeight * 0.02, // Add margin to the bottom of each input
+    backgroundColor: colors.white,
+    borderRadius: 10,
+    paddingLeft: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: windowWidth * 0.005, height: windowHeight * 0.005 },
+    shadowOpacity: 0.25,
+    shadowRadius: windowWidth * 0.01,
+    elevation: 5,
   },
 });
 

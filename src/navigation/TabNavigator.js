@@ -5,11 +5,10 @@ import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 
 import HomePage from '../screens/HomePage';
 import HabitTracker from '../screens/bottomTab/HabitTracker';
-import GameDetailsScreen from '../screens/bottomTab/GameDetailsScreen';
 import colors from '../constants/colors';
-
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icon from "react-native-vector-icons/FontAwesome";
 import JournalScreen from '../screens/mainFeatures/Journaling/JournalScreen';
+import {RFValue} from "react-native-responsive-fontsize";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -47,7 +46,7 @@ const TabNavigator = () => {
             backgroundColor: colors.startPageBg,
           },
           tabBarIcon: ({color, size}) => (
-            <Ionicons name="home-outline" color={color}  styles={{fontSize : 22}}  />
+              <Icon name="home" size={RFValue(20)} color={colors.BottomButton} />
           ),
         })}
       />
@@ -58,8 +57,9 @@ const TabNavigator = () => {
           //tabBarBadge: 3,
           //tabBarBadgeStyle: {backgroundColor: 'yellow'},
           tabBarIcon: ({color, size}) => (
-            <Ionicons name="book-outline" color={color}  styles={{fontSize : 22}}  />
-    ),
+              <Icon name="pencil" size={RFValue(20)} color={colors.BottomButton} />
+
+          ),
         }}
       />
       <Tab.Screen
@@ -67,8 +67,7 @@ const TabNavigator = () => {
         component={HabitTracker}
         options={{
           tabBarIcon: ({color, size}) => (
-            <Ionicons name="calendar-outline" color={color}  styles={{fontSize : 22}}  />
-            
+              <Icon name="calendar" size={RFValue(20)} color={colors.BottomButton} />
           ),
         }}
       />

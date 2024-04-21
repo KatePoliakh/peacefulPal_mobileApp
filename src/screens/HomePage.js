@@ -1,19 +1,44 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { StyleSheet, Image, Text, View, TouchableOpacity } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import colors from "../constants/colors"
-import { windowWidth, windowHeight } from '../constants/dimensions'; 
+import { windowWidth, windowHeight } from '../constants/dimensions';
 import { ScrollView } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { apiUrl } from  '../constants/url';
 
 export default function Home({navigation}) {
+    const [userName, setUserName] = useState('');
+    useEffect(() => {
+        // Fetch username from server or other storage mechanism
+        fetchUserName();
+    }, []);
+
+//ПОЧИНИТЬ!!!
+
+    const fetchUserName = async () => {
+        // Replace 'api/login' with your actual login endpoint
+        const response = await fetch(`${apiUrl}/api/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email: 'user@example.com', password: 'password' }), // Provide user's email and password
+        });
+        const data = await response.json();
+        if (response.ok) {
+            setUserName(data.userName);
+        } else {
+            console.error('Error fetching user name:', data.error);
+        }
+    };
   return (
     <SafeAreaView style={styles.Home}>
       <View style={styles.BgCircle1}></View>
       <View style={styles.BgCircle2}></View>
       <View style={styles.WelcomeGroup}>
         <View style={styles.Group}>
-          <Text style={styles.WelcomeBack}>Welcome back, Kate!</Text>
+          <Text style={styles.WelcomeBack}>Welcome back, {userName}!</Text>
           <Text style={styles.question}>
                 What are you missing right now?
           </Text>
@@ -49,7 +74,7 @@ export default function Home({navigation}) {
             <View style={styles.MoodStyle}>
               <Image
                 style={styles.Relax}
-                source={require('../assets/images/moodlets/relaxMoodlet.png')} 
+                source={require('../assets/images/moodlets/relaxMoodlet.png')}
               />
             </View>
             <Text style={styles.RelaxText}>Relax</Text>
@@ -66,15 +91,15 @@ export default function Home({navigation}) {
             <Text style={styles.FocusText}>Focus</Text>
         </View>
         </TouchableOpacity>
-      </ScrollView> 
+      </ScrollView>
       </View>
-     
+
         <Text style={styles.TodaySTask}>Daily Tasks</Text>
-        
-        
+
+
         <View style={{ flexDirection: 'row', left: windowWidth * 0.02}}>
           <View horizontalstyle={styles.meditationButton}>
-             <TouchableOpacity 
+             <TouchableOpacity
              onPress={() => navigation.navigate('MeditationScreen')}
              style={styles.TasksButton}>
               <Text style={styles.buttonText}>Meditation</Text>
@@ -85,7 +110,7 @@ export default function Home({navigation}) {
              </TouchableOpacity>
           </View>
           <View horizontalstyle={styles.GamepadButtonButton}>
-             <TouchableOpacity 
+             <TouchableOpacity
              onPress={() => navigation.navigate('GamesScreen')}
              style={styles.TasksButton}>
               <Text style={styles.buttonText}>Games</Text>
@@ -99,7 +124,7 @@ export default function Home({navigation}) {
 
           <View style={{ flexDirection: 'row', left: windowWidth * 0.02}}>
           <View horizontalstyle={styles.JornalButton}>
-             <TouchableOpacity 
+             <TouchableOpacity
              onPress={() => navigation.navigate('JournalScreen')}
              style={styles.TasksButton}>
               <Text style={styles.buttonText}>Journaling</Text>
@@ -110,7 +135,7 @@ export default function Home({navigation}) {
              </TouchableOpacity>
           </View>
           <View horizontalstyle={styles.BreathingButton}>
-             <TouchableOpacity 
+             <TouchableOpacity
              onPress={() => navigation.navigate('BreathingScreen')}
              style={styles.TasksButton}>
               <Text style={styles.buttonText}>Breathing</Text>
@@ -121,8 +146,8 @@ export default function Home({navigation}) {
              </TouchableOpacity>
           </View>
         </View>
-          
-        
+
+
     </SafeAreaView>
   )
 }
@@ -137,7 +162,7 @@ const styles = StyleSheet.create({
     top: "8%",
     left: windowWidth * 0.02,
     //backgroundColor: 'green',
-    height: '10%', 
+    height: '10%',
 
   },
   WelcomeBack: {
@@ -181,9 +206,9 @@ const styles = StyleSheet.create({
     fontSize: RFValue(15),
     textAlign: "center",
   },
-  
+
   TodaySTask: {
-    color: colors.BottomButton, 
+    color: colors.BottomButton,
     fontSize: RFValue(22),
     height: '7%',
     top: '12%',
@@ -236,24 +261,24 @@ const styles = StyleSheet.create({
   ButtonIcon: {
     width: windowWidth * 0.2, // 10% of window width
     height: windowHeight * 0.1, // 10% of window height
-    
+
   },
   BgCircle1: {
     position: "absolute",
     top: "40%",
     left: "-40%",
-    width: windowWidth, 
-    height: windowWidth, 
-    borderRadius: (windowWidth) / 2, 
+    width: windowWidth,
+    height: windowWidth,
+    borderRadius: (windowWidth) / 2,
     backgroundColor: colors.StartPageCircle,
   },
   BgCircle2: {
     position: "absolute",
     top: "10%",
     left: "60%",
-    width: windowWidth, 
-    height: windowWidth, 
-    borderRadius: (windowWidth) / 2, 
+    width: windowWidth,
+    height: windowWidth,
+    borderRadius: (windowWidth) / 2,
     backgroundColor: colors.StartPageCircle,
   },
 })

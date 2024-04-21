@@ -1,42 +1,97 @@
 import React from 'react';
-import { View, Text, StyleSheet, Linking } from 'react-native';
+import {Text, StyleSheet, Linking, TouchableOpacity, SafeAreaView} from 'react-native';
+import {windowHeight, windowWidth} from "../../constants/dimensions";
+import colors from "../../constants/colors";
+import {RFValue} from "react-native-responsive-fontsize";
 
 const EmergencyHelpScreen = () => {
+  const callHotline = (phoneNumber) => {
+    Linking.openURL(`tel:${phoneNumber}`);
+  };
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Emergency Mental Health Help</Text>
-      <Text style={styles.text}>
-        If you are in a crisis, please call the National Suicide Prevention Lifeline at{' '}
-        <Text style={styles.link} onPress={() => Linking.openURL('tel:18002738255')}>
-          1-800-273-TALK (8255)
+      <SafeAreaView style={styles.container}>
+
+        <Text style={styles.title}>Emergency Mental Health Help</Text>
+        <Text style={styles.text}>
+          If you are in a crisis, please call this number
         </Text>
-        {'\n'}
-        or use the{' '}
-        <Text style={styles.link} onPress={() => Linking.openURL('https://www.crisistextline.org/')}>
-          Crisis Text Line
-        </Text>{' '}
-        by texting TALK to 741741.
-      </Text>
-    </View>
+
+        <TouchableOpacity style={styles.button}
+                          onPress={() => callHotline('84954021501')}>
+          <Text style={styles.buttonText}>8-495-402-15-01</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.link}
+                          onPress={() => Linking.openURL('https://www.psihologiya-praktika.ru/po-konsultatsii/')}>
+          <Text style={styles.linkText}>free consultation</Text>
+        </TouchableOpacity>
+      </SafeAreaView>
+
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    justifyContent: 'center',
+    height: windowHeight,
+    width: windowWidth,
+    backgroundColor: colors.white
+  },
+
+  scroll: {
+    top: "10%"
   },
   title: {
-    fontSize: 24,
+    fontSize: 0.06 * windowWidth,
     fontWeight: 'bold',
-    marginBottom: 20,
+    marginBottom: 0.05 * windowWidth,
+    textAlign: 'center',
+    top: '20%',
+    color: colors.bottomButton,
   },
   text: {
-    fontSize: 18,
+    fontSize: RFValue(18),
+    top: '20%',
+    alignSelf: "center",
+    left: windowWidth * 0.01,
+    color: colors.bottomButton
   },
   link: {
-    color: 'blue',
+    color: '',
+    textDecorationLine: 'underline',
+    top: '55%',
+    position: "absolute",
+    //display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "center",
+    width: windowWidth * 0.65, // 75% of window width
+    height: windowHeight * 0.09, // 10% of window height
+    padding: windowWidth * 0.025, // 2.5% of window width
+    borderRadius: windowWidth * 0.025, // 2.5% of window width
+    backgroundColor: colors.BottomButton,
+  },
+  linkText:{
+    color:colors.white,
+    fontWeight: 'bold',
+  },
+  button: {
+    position: "absolute",
+    //display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "center",
+    width: windowWidth * 0.65, // 75% of window width
+    height: windowHeight * 0.09, // 10% of window height
+    padding: windowWidth * 0.025, // 2.5% of window width
+    borderRadius: windowWidth * 0.025, // 2.5% of window width
+    backgroundColor: colors.BottomButton,
+    top: '40%'
+  },
+  buttonText:{
+    color:colors.white,
+    fontWeight: 'bold',
   },
 });
 

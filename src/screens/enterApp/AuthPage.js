@@ -5,25 +5,24 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  Alert,
+  Alert, TextInput,
 } from 'react-native';
 import colors from '../../constants/colors';
 import { windowWidth, windowHeight } from '../../constants/dimensions';
 
-import InputField from '../../components/InputField';
 import CustomButton from '../../components/CustomButton';
 import { AuthContext } from '../../context/AuthContext';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { apiUrl } from  '../../constants/url';
 
 function AuthPage({ navigation }) {
   const { login } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState(null);
 
   const handleLogin = async () => {
     try {
-      const response = await fetch('https://3a17-95-64-169-174.ngrok-free.app/api/login', {
+      const response = await fetch(`${apiUrl}/api/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -53,18 +52,19 @@ function AuthPage({ navigation }) {
         </View>
         <View style={styles.container}>
           <Text style={styles.loginText}>Login</Text>
-          <InputField
-              label={'Email ID'}
-              keyboardType="email-address"
-              value={email}
-              onChangeText={setEmail}
-          />
-          <InputField
-              label={'Password'}
-              inputType="password"
-              value={password}
-              onChangeText={setPassword}
-          />
+          <View style={{direction: 'column'}}>
+            <TextInput style={styles.input}
+                       placeholder="Email"
+                       placeholderTextColor="grey"
+                       keyboardType="email-address"
+                       onChangeText={text => setEmail(text)}
+                       value={email}/>
+            <TextInput style={styles.input}
+                       placeholder="Password"
+                       placeholderTextColor="grey"
+                       onChangeText={text => setPassword(text)}
+                       value={password}/>
+          </View>
           <CustomButton label={'Login'} onPress={handleLogin} />
           <View style={styles.rowView}>
             <Text>New to the app?</Text>
@@ -129,6 +129,18 @@ const styles = StyleSheet.create({
   registerText: {
     color: colors.BottomButton,
     fontWeight: '700',
+  },
+  input: {
+    height: windowHeight * 0.07,
+    marginBottom: windowHeight * 0.02, // Add margin to the bottom of each input
+    backgroundColor: colors.white,
+    borderRadius: 10,
+    paddingLeft: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: windowWidth * 0.005, height: windowHeight * 0.005 },
+    shadowOpacity: 0.25,
+    shadowRadius: windowWidth * 0.01,
+    elevation: 5,
   },
 });
 

@@ -6,7 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import CustomDrawer from '../components/CustomDrawer';
 
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icon from "react-native-vector-icons/FontAwesome";
 import EmergencyHelpScreen from '../screens/sideTab/EmergencyHelpScreen';
 import SettingsScreen from '../screens/sideTab/SettingsScreen';
 import colors from '../constants/colors';
@@ -16,11 +16,13 @@ import BreathingScreen from '../screens/mainFeatures/Breathing/BreathingScreen';
 import MeditationScreen from '../screens/mainFeatures/Meditation/MeditationScreen';
 import GamesScreen from '../screens/mainFeatures/Games/GamesScreen';
 import JournalScreen from '../screens/mainFeatures/Journaling/JournalScreen';
+import NewJournalEntry from "../screens/mainFeatures/Journaling/NewJournalEntry";
 
 import CalmnessScreen from '../screens/suggestions/CalmnessScreen';
 import FocusedScreen from '../screens/suggestions/FocusedScreen';
 import HappinessScreen from '../screens/suggestions/HappinessScreen';
 import RelaxfulScreen from '../screens/suggestions/RelaxfulScreen';
+import PomodoroTimer from '../screens/suggestions/PomodoroTimer';
 
 import BubbleGame from '../screens/mainFeatures/Games/BubbleGame';
 import NumbersGame from '../screens/mainFeatures/Games/NumbersGame';
@@ -29,6 +31,8 @@ import SwingGame from '../screens/mainFeatures/Games/SwingGame';
 import Habit from '../components/Habit';
 import HabitTracker from '../screens/bottomTab/HabitTracker';
 import HomePage from '../screens/HomePage';
+import {RFValue} from "react-native-responsive-fontsize";
+import {windowHeight, windowWidth } from "../constants/dimensions";
 
 
 const Stack = createNativeStackNavigator();
@@ -44,13 +48,16 @@ const HomeStack = () => {
 
       <Stack.Screen name="MeditationScreen" component={MeditationScreen} />
       <Stack.Screen name="GamesScreen" component={GamesScreen} />
+
       <Stack.Screen name="JournalScreen" component={JournalScreen} />
+        <Stack.Screen name="NewJournalEntry" component={NewJournalEntry}/>
       <Stack.Screen name="BreathingScreen" component={BreathingScreen} />
 
       <Stack.Screen name="CalmnessScreen" component={CalmnessScreen} />
       <Stack.Screen name="FocusedScreen" component={FocusedScreen} />
       <Stack.Screen name="HappinessScreen" component={HappinessScreen} />
       <Stack.Screen name="RelaxfulScreen" component={RelaxfulScreen} />
+        <Stack.Screen name="PomodoroTimer" component={PomodoroTimer}/>
 
       
       <Stack.Screen name="NumbersGame" component={NumbersGame} />
@@ -83,7 +90,7 @@ const AppStack = () => {
         component={HomeStack}
         options={{
           drawerIcon: ({ color }) => (
-            <Ionicons name="home-outline" styles={{fontSize : 22}} color={color} />
+              <Icon name="home" size={RFValue(20)} color={colors.BottomButton} />
           ),
         }} />
       
@@ -92,16 +99,17 @@ const AppStack = () => {
         component={EmergencyHelpScreen}
         options={{
           drawerIcon: ({ color }) => (
-            <Ionicons name="chatbox-ellipses-outline"  styles={{fontSize : 22}}  color={color} />
+              <Icon name="info" size={RFValue(20)} color={colors.BottomButton} style={{left: windowWidth * 0.01}}/>
           ),
-        }} />
+        }}
+      />
     
       <Drawer.Screen
         name="Settings"
         component={SettingsScreen}
         options={{
           drawerIcon: ({ color }) => (
-            <Ionicons name="settings-outline"  styles={{fontSize : 22}}  color={color} />
+              <Icon name="gear" size={RFValue(20)} color={colors.BottomButton} />
           ),
         }} />
         

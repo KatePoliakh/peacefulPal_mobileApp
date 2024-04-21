@@ -11,10 +11,10 @@ import {
   DrawerItemList,
 } from '@react-navigation/drawer';
 
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Icon from "react-native-vector-icons/FontAwesome";
 import colors from '../constants/colors';
 import { AuthContext } from '../context/AuthContext';
+import {RFValue} from "react-native-responsive-fontsize";
 
 const CustomDrawer = props => {
   const {logout} = useContext(AuthContext); 
@@ -64,8 +64,9 @@ const CustomDrawer = props => {
         </TouchableOpacity>
         <TouchableOpacity onPress={() => {logout()}} style={{paddingVertical: 15}}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Ionicons name="exit-outline" style={{fontSize : 22}} />
-            <Text
+              <Icon name="sign-out" size={RFValue(20)} color={colors.BottomButton} />
+
+              <Text
               style={{
                 fontSize: 15,
                 fontFamily: 'Roboto-Medium',
