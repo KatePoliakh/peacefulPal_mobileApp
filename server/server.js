@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const { Pool } = require('pg');
 const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcrypt');
+const AsyncStorage = require('@react-native-async-storage/async-storage');
+
 
 const pool = new Pool({
     user: 'postgres',
@@ -19,9 +21,7 @@ app.use(bodyParser.json());
 app.post('/api/register', async (req, res) => {
     const { fullName, email, password } = req.body;
     const userId = uuidv4();
-    // Perform database query to insert new user
     try {
-        // Check if the email already exists in the database
        const emailExists = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
         if (emailExists.rows.length > 0) {
             return res.status(400).json({ error: 'Email already registered' });
@@ -42,15 +42,15 @@ app.post('/api/register', async (req, res) => {
 // Endpoint for user authentication
 app.post('/api/login', async (req, res) => {
     const { email, password } = req.body;
-    // Perform database query to check user credentials
+
     try {
         const result = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
         if (result.rows.length > 0) {
             const user = result.rows[0];
-            // Compare hashed password with input password using bcrypt
             const passwordMatch = await bcrypt.compare(password, user.password);
             if (passwordMatch) {
-                res.status(200).json({ message: 'Login successful', userName: user.full_name  });
+                //await AsyncStorage.setItem('userName', user.fullName);
+                res.status(200).json({ message: 'Login successful', userName: user.fullName  });
             } else {
                 res.status(401).json({ error: 'Invalid email or password' });
             }
@@ -59,6 +59,21 @@ app.post('/api/login', async (req, res) => {
         }
     } catch (error) {
         console.error('Error authenticating user:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+app.get('/api/user/:userId', async (req, res) => {
+    const userId = req.params.userId;
+    try {
+        const result = await pool.query('SELECT full_name FROM users WHERE id = $1', [userId]);
+        if (result.rows.length > 0) {
+            const fullName = result.rows[0].fullName;
+            res.status(200).json({ fullName });
+        } else {
+            res.status(404).json({ error: 'User not found' });
+        }
+    } catch (error) {
+        console.error('Error fetching user:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
 });
