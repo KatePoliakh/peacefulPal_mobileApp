@@ -6,6 +6,7 @@ import {windowHeight, windowWidth} from "../../../constants/dimensions";
 import colors from "../../../constants/colors";
 import Icon from "react-native-vector-icons/FontAwesome";
 import {RFValue} from "react-native-responsive-fontsize";
+import CustomButton from "../../../components/CustomButton";
 
 const NewJournalEntry = () => {
     const [title, setTitle] = useState('');
@@ -69,7 +70,7 @@ const NewJournalEntry = () => {
                 placeholder="Enter content..."
                 multiline
             />
-            <Button title="Save Entry" onPress={saveEntry} />
+                <CustomButton label={'Submit'} onPress={saveEntry} />
             </ScrollView>
         </View>
     );
@@ -106,6 +107,12 @@ const styles = StyleSheet.create({
         borderRadius: windowWidth * 0.015, // Adjust based on screen width
         padding: windowWidth * 0.04, // Adjust based on screen width
         marginBottom: windowWidth * 0.04, // Adjust based on screen width
+        backgroundColor: colors.white,
+        shadowColor: '#000',
+        shadowOffset: { width: windowWidth * 0.005, height: windowHeight * 0.005 },
+        shadowOpacity: 0.25,
+        shadowRadius: windowWidth * 0.01,
+        elevation: 5,
     },
 });
 
