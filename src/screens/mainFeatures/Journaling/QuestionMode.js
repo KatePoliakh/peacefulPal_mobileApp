@@ -121,7 +121,8 @@ const styles = StyleSheet.create({
     label: {
         fontSize: RFValue(20),
         marginBottom: windowWidth * 0.01,
-        color: colors.white,
+        color: colors.BottomButton,
+        fontWeight: 'bold',
     },
     input: {
         fontSize: RFValue(18),
