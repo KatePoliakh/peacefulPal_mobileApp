@@ -1,66 +1,64 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, Image} from 'react-native'
-import Icon from 'react-native-vector-icons/Ionicons'; // make sure to install this package
-
-
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { RFValue } from 'react-native-responsive-fontsize';
 import colors from '../../../constants/colors';
 import { windowHeight, windowWidth } from '../../../constants/dimensions';
 
 const GamesScreen = ({ navigation }) => {
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.BgCircle1}></View>
-      <View style={styles.BgCircle2}></View>
-      <View style={styles.BgCircle3}></View>
-      <View style={styles.BgCircle4}></View>
+      <SafeAreaView style={styles.container}>
+        <View style={styles.BgCircle1}></View>
+        <View style={styles.BgCircle2}></View>
+        <View style={styles.BgCircle3}></View>
+        <View style={styles.BgCircle4}></View>
         <TouchableOpacity style={styles.returnButton} onPress={() => navigation.goBack()}>
-          <Icon name="arrow-back-outline"  styles={{fontSize : 100}}  color={colors.BottomButton} />
+          <Icon name="arrow-left" size={RFValue(20)} color={colors.BottomButton} />
         </TouchableOpacity>
         <Text style={styles.Title}>Games</Text>
         <View style={{ flexDirection: 'row', left: windowWidth * 0.02}}>
           <View style={styles.gameButton}>
-            <TouchableOpacity 
-              onPress={() => navigation.navigate('BubbleGame')}
-              style={styles.TasksButton}>
+            <TouchableOpacity
+                onPress={() => navigation.navigate('BubbleGame')}
+                style={styles.TasksButton}>
               <Text style={styles.buttonText}>Bubbles</Text>
               <Image
-                style={{flex: 1,
-                  width: null,
-                  height: null,
-                  resizeMode: 'contain'}}
-                source={require('../../../assets/images/gamesIcons/bubbles.png')}
+                  style={{flex: 1,
+                    width: null,
+                    height: null,
+                    resizeMode: 'contain'}}
+                  source={require('../../../assets/images/gamesIcons/bubbles.png')}
 
               />
             </TouchableOpacity>
           </View>
           <View style={styles.gameButton}>
-            <TouchableOpacity 
-              onPress={() => navigation.navigate('NumbersGame')}
-              style={styles.TasksButton}>
+            <TouchableOpacity
+                onPress={() => navigation.navigate('NumbersGame')}
+                style={styles.TasksButton}>
               <Text style={styles.buttonText}>Arithmetic</Text>
               <Image
-                style={styles.ButtonIcon}
-                source={require('../../../assets/images/gamesIcons/arithmetic.png')}
+                  style={styles.ButtonIcon}
+                  source={require('../../../assets/images/gamesIcons/arithmetic.png')}
               />
             </TouchableOpacity>
           </View>
-          </View>
-          <View style={{ flexDirection: 'row', left: windowWidth * 0.02}}>
+        </View>
+        <View style={{ flexDirection: 'row', left: windowWidth * 0.02}}>
           <View style={styles.gameButton}>
-            <TouchableOpacity 
-              onPress={() => navigation.navigate('SwingGame')}
-              style={styles.TasksButton}>
+            <TouchableOpacity
+                onPress={() => navigation.navigate('SwingGame')}
+                style={styles.TasksButton}>
               <Text style={styles.buttonText}>  Swing</Text>
               <Image
-                style={styles.ButtonIcon}
-                source={require('../../../assets/images/gamepad_icon.png')}
+                  style={styles.ButtonIcon}
+                  source={require('../../../assets/images/gamepad_icon.png')}
               />
             </TouchableOpacity>
           </View>
-          </View>
-      
-    </SafeAreaView>
+        </View>
+
+      </SafeAreaView>
   )
 }
 
@@ -115,36 +113,36 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: "20%",
     left: "-50%",
-    width: windowWidth, 
-    height: windowWidth, 
-    borderRadius: (windowWidth) / 2, 
+    width: windowWidth,
+    height: windowWidth,
+    borderRadius: (windowWidth) / 2,
     backgroundColor: colors.StartPageCircle,
   },
   BgCircle2: {
     position: "absolute",
     top: "4%",
     left: "70%",
-    width: windowWidth, 
-    height: windowWidth, 
-    borderRadius: (windowWidth) / 2, 
+    width: windowWidth,
+    height: windowWidth,
+    borderRadius: (windowWidth) / 2,
     backgroundColor: colors.StartPageCircle,
   },
   BgCircle3: {
     position: "absolute",
     top: "80%",
     left: "-20%",
-    width: windowWidth, 
-    height: windowWidth, 
-    borderRadius: (windowWidth) / 2, 
+    width: windowWidth,
+    height: windowWidth,
+    borderRadius: (windowWidth) / 2,
     backgroundColor: colors.StartPageCircle,
   },
   BgCircle4: {
     position: "absolute",
     top: "55%",
     left: "70%",
-    width: windowWidth, 
-    height: windowWidth, 
-    borderRadius: (windowWidth) / 2, 
+    width: windowWidth,
+    height: windowWidth,
+    borderRadius: (windowWidth) / 2,
     backgroundColor: colors.StartPageCircle,
   },
 });
