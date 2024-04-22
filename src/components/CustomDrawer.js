@@ -24,50 +24,47 @@ const CustomDrawer = props => {
         {...props}
         contentContainerStyle={{backgroundColor: colors.startPageBg}}>
         <ImageBackground
-          //source={require('../assets/images/menu-bg.jpeg')}
-          style={{padding: 20}}>
+          style={{padding: RFValue(5) }}>
           <Image
-            //source={require('../assets/images/user-profile.jpg')}
-            style={{height: 80, width: 80, borderRadius: 40, marginBottom: 10}}
+            style={{height: RFValue(80),
+                width: RFValue(80),
+                borderRadius: RFValue(40),
+                marginBottom: RFValue(10),
+            }}
           />
           <Text
             style={{
-              color: '#fff',
-              fontSize: 18,
-              marginBottom: 5,
-              fontWeight: 'bold',
+                color: '#fff',
+                fontSize: RFValue(18),
+                marginBottom: RFValue(5),
+                fontWeight: 'bold',
             }}>
-            
-
-
           </Text>
         </ImageBackground>
-        <View style={{flex: 1, backgroundColor: '#fff', paddingTop: 10}}>
+        <View style={{flex: 1, backgroundColor: '#fff', paddingTop: RFValue(10) }}>
           <DrawerItemList {...props} />
         </View>
       </DrawerContentScrollView>
-      <View style={{padding: 20, borderTopWidth: 1, borderTopColor: '#ccc'}}>
-        <TouchableOpacity onPress={() => {}} style={{paddingVertical: 15}}>
+      <View style={{padding: RFValue(5), borderTopWidth: RFValue(1), borderTopColor: '#ccc' }}>
+        <TouchableOpacity onPress={() => {}} style={{paddingVertical: RFValue(15)}}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
            
             <Text
               style={{
-                fontSize: 15,
-                marginLeft: 5,
+                  fontSize: RFValue(15),
+                  marginLeft: RFValue(5),
               }}>
-              
 
             </Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => {logout()}} style={{paddingVertical: 15}}>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        <TouchableOpacity onPress={() => {logout()}} style={{paddingVertical: RFValue(15)}}>
+          <View style={{flexDirection: 'row', alignItems: 'center', left: RFValue(20), bottom: RFValue(20)}}>
               <Icon name="sign-out" size={RFValue(20)} color={colors.BottomButton} />
-
               <Text
               style={{
-                fontSize: 15,
-                marginLeft: 5,
+                  fontSize: RFValue(15),
+                  marginLeft: RFValue(5),
               }}>
               Sign Out
             </Text>

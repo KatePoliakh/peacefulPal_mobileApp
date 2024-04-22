@@ -42,10 +42,8 @@ const RegisterScreen = ({navigation}) => {
       });
 
       if (response.ok) {
-        // Registration successful, navigate to login screen
         navigation.goBack();
       } else {
-        // Registration failed, display error message
         const data = await response.json();
         Alert.alert('Error', data.error);
       }
@@ -58,7 +56,7 @@ const RegisterScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.signUpPage}>
       <View style={styles.BgCircle} />
-      <View style={styles.WeclomeTitle}>
+      <View style={styles.WelcomeTitle}>
           <Text style={styles.Title}>Hi, happy that you’re joining!</Text>
         </View>
       <ScrollView
@@ -118,49 +116,49 @@ const styles = StyleSheet.create({
   },
   BgCircle: {
     position: "absolute",
-    top: windowHeight * 0.4, // Adjusted top position based on window height and width
-    left: -windowWidth * 0.4, // Adjusted left position based on window width
+    top: windowHeight * 0.4,
+    left: -windowWidth * 0.4,
     width: windowWidth,
     height: windowWidth,
     borderRadius: windowWidth / 2,
     backgroundColor: colors.StartPageCircle,
   },
-  WeclomeTitle: {
+  WelcomeTitle: {
     paddingTop: '10%',
   },
   Title: {
     color: colors.white,
-    fontSize: windowWidth * 0.1, // Adjusted font size based on window width
-    lineHeight: windowWidth * 0.12, // Adjusted line height based on window width
+    fontSize: windowWidth * 0.1,
+    lineHeight: windowWidth * 0.12,
     fontWeight: '700',
     textAlign: "center",
   },
   scrollView: {
-    width: '100%', // Ensures the scrollView takes full width
-    paddingHorizontal: '5%', // Adjusted padding based on percentage
+    width: '100%',
+    paddingHorizontal: '5%',
   },
   centeredView: {
     alignItems: 'center',
-    width: '100%', // Ensures the centered view takes full width
+    width: '100%',
   },
   registerText: {
-    fontSize: windowWidth * 0.07, // Adjusted font size based on window width
-    marginBottom: '5%', // Adjusted margin based on percentage
-    marginTop: '15%', // Adjusted margin based on percentage
+    fontSize: windowWidth * 0.07,
+    marginBottom: '5%',
+    marginTop: '15%',
     color: colors.white,
     fontWeight: 'bold',
   },
   centeredText: {
     textAlign: 'center',
     color: colors.BottomButton,
-    marginBottom: '5%', // Adjusted margin based on percentage
-    width: '100%', // Ensures the text takes full width
+    marginBottom: '5%',
+    width: '100%',
   },
   loginView: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginBottom: '5%', // Adjusted margin based on percentage
-    width: '100%', // Ensures the login view takes full width
+    marginBottom: '5%',
+    width: '100%',
   },
   loginText: {
     color: colors.BottomButton,
@@ -168,7 +166,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: windowHeight * 0.07,
-    marginBottom: windowHeight * 0.02, // Add margin to the bottom of each input
+    marginBottom: windowHeight * 0.02,
     backgroundColor: colors.white,
     borderRadius: 10,
     paddingLeft: 10,

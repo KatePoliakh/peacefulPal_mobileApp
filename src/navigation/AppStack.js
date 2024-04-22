@@ -28,11 +28,10 @@ import BubbleGame from '../screens/mainFeatures/Games/BubbleGame';
 import NumbersGame from '../screens/mainFeatures/Games/NumbersGame';
 import SwingGame from '../screens/mainFeatures/Games/SwingGame';
 
-import Habit from '../components/Habit';
 import HabitTracker from '../screens/bottomTab/HabitTracker';
 import HomePage from '../screens/HomePage';
 import {RFValue} from "react-native-responsive-fontsize";
-import {windowHeight, windowWidth } from "../constants/dimensions";
+import {windowWidth } from "../constants/dimensions";
 import QuestionMode from "../screens/mainFeatures/Journaling/QuestionMode";
 import JournalEntryDetails from "../screens/mainFeatures/Journaling/JournalEntryDetails";
 

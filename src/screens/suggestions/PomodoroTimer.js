@@ -131,10 +131,10 @@ const styles = StyleSheet.create({
     },
     returnButton: {
         position: 'absolute',
-        top: windowHeight * 0.05, // Adjust based on screen height
-        left: windowWidth * 0.03, // Adjust based on screen width
-        padding: windowWidth * 0.04, // Adjust based on screen width
-        borderRadius: windowWidth * 0.01, // Adjust based on screen width
+        top: windowHeight * 0.05,
+        left: windowWidth * 0.03,
+        padding: windowWidth * 0.04,
+        borderRadius: windowWidth * 0.01,
     },
 });
 

@@ -71,12 +71,12 @@ const styles = StyleSheet.create({
     color: colors.BottomButton,
   },
   returnButton: {
-    marginRight: windowWidth * 0.02, // 2% of the window width
-    padding: windowWidth * 0.05, // 5% of the window width
-    borderRadius: windowWidth * 0.1, // 10% of the window width
+    marginRight: windowWidth * 0.02,
+    padding: windowWidth * 0.05,
+    borderRadius: windowWidth * 0.1,
   },
   headerText: {
-    fontSize: windowWidth * 0.06, // 6% of the window width
+    fontSize: windowWidth * 0.06,
     fontWeight: 'bold',
     color: colors.Text,
   },
@@ -88,8 +88,8 @@ const styles = StyleSheet.create({
   bubble: {
     position: 'absolute',
     width: windowWidth * 0.1,
-    height: windowWidth * 0.1, // 10% of the window width
-    borderRadius: windowWidth * 0.05, // 5% of the window width
+    height: windowWidth * 0.1,
+    borderRadius: windowWidth * 0.05,
   },
 });
 

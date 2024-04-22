@@ -6,7 +6,6 @@ import { windowHeight, windowWidth } from '../../constants/dimensions';
 import {RFValue} from "react-native-responsive-fontsize";
 
 const CalmnessScreen = ({ navigation }) => {
-  // Function to navigate to different sections of the app
   const navigateTo = (screen) => {
     navigation.navigate(screen);
   };
@@ -71,30 +70,30 @@ const styles = StyleSheet.create({
     backgroundColor: colors.startPageBg
   },
   heading: {
-    fontSize: RFValue(40), // Adjust based on screen width
+    fontSize: RFValue(40),
     fontWeight: 'bold',
-    marginBottom: windowHeight * 0.05, // Adjust based on screen height
+    marginBottom: windowHeight * 0.05,
     top: windowHeight * 0.02,
     alignSelf: 'center',
     color: colors.white,
   },
   section: {
-    marginBottom: windowHeight * 0.03, // Adjust based on screen height
+    marginBottom: windowHeight * 0.03,
   },
   sectionTitle: {
-    fontSize: RFValue(15), // Adjust based on screen width
+    fontSize: RFValue(15),
     fontWeight: 'bold',
-    marginBottom: windowHeight * 0.015, // Adjust based on screen height
+    marginBottom: windowHeight * 0.015,
     color: colors.BottomButton,
   },
   sectionText: {
-    fontSize: windowWidth * 0.04, // Adjust based on screen width
-    marginBottom: windowHeight * 0.015, // Adjust based on screen height
+    fontSize: windowWidth * 0.04,
+    marginBottom: windowHeight * 0.015,
     color: colors.BottomButton,
     width: windowWidth * 0.95
   },
   optionButton: {
-    padding: windowWidth * 0.04, // Adjust based on screen width
+    padding: windowWidth * 0.04,
     width: windowWidth * 0.6,
     height: windowHeight * 0.06,
     justifyContent: 'center',
@@ -113,14 +112,14 @@ const styles = StyleSheet.create({
   buttonText: {
     color: colors.BottomButton,
     textAlign: 'center',
-    fontSize: windowWidth * 0.04, // Adjust based on screen width
+    fontSize: windowWidth * 0.04,
   },
   returnButton: {
     position: 'absolute',
-    top: windowHeight * 0.05, // Adjust based on screen height
-    left: windowWidth * 0.03, // Adjust based on screen width
-    padding: windowWidth * 0.04, // Adjust based on screen width
-    borderRadius: windowWidth * 0.01, // Adjust based on screen width
+    top: windowHeight * 0.05,
+    left: windowWidth * 0.03,
+    padding: windowWidth * 0.04,
+    borderRadius: windowWidth * 0.01,
   },
 });
 

@@ -21,8 +21,6 @@ const HomeStack = () => {
         component={HomePage}
         options={{headerShown: false}}
       />
-      
-      
     </Stack.Navigator>
   );
 };

@@ -80,9 +80,9 @@ const styles = StyleSheet.create({
     bottom: "9%",
     justifyContent: "center",
     alignItems: "center",
-    width: windowWidth * 0.45, // 75% of window width
-    height: windowHeight * 0.2, // 10% of window height
-    borderRadius: windowWidth * 0.025, // 2.5% of window width
+    width: windowWidth * 0.45,
+    height: windowHeight * 0.2,
+    borderRadius: windowWidth * 0.025,
     backgroundColor: colors.white,
     margin: "2%",
     shadowColor: '#000',
@@ -92,9 +92,9 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   returnButton: {
-    padding: windowWidth * 0.025, // 2.5% of screen width
-    borderRadius: windowWidth * 0.0125, // 1.25% of screen width
-    marginTop: windowHeight * 0.01, // 1% of screen height
+    padding: windowWidth * 0.025,
+    borderRadius: windowWidth * 0.0125,
+    marginTop: windowHeight * 0.01,
   },
   buttonText: {
     color: colors.BottomButton,

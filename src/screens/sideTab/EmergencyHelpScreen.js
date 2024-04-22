@@ -65,10 +65,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     alignSelf: "center",
-    width: windowWidth * 0.65, // 75% of window width
-    height: windowHeight * 0.09, // 10% of window height
-    padding: windowWidth * 0.025, // 2.5% of window width
-    borderRadius: windowWidth * 0.025, // 2.5% of window width
+    width: windowWidth * 0.65,
+    height: windowHeight * 0.09,
+    padding: windowWidth * 0.025,
+    borderRadius: windowWidth * 0.025,
     backgroundColor: colors.BottomButton,
   },
   linkText:{
@@ -77,15 +77,14 @@ const styles = StyleSheet.create({
   },
   button: {
     position: "absolute",
-    //display: "flex",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     alignSelf: "center",
-    width: windowWidth * 0.65, // 75% of window width
-    height: windowHeight * 0.09, // 10% of window height
-    padding: windowWidth * 0.025, // 2.5% of window width
-    borderRadius: windowWidth * 0.025, // 2.5% of window width
+    width: windowWidth * 0.65,
+    height: windowHeight * 0.09,
+    padding: windowWidth * 0.025,
+    borderRadius: windowWidth * 0.025,
     backgroundColor: colors.BottomButton,
     top: '40%'
   },

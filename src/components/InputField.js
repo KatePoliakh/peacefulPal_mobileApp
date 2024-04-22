@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, TextInput, StyleSheet} from 'react-native';
+import {View, Text, TouchableOpacity, TextInput} from 'react-native';
 import colors from '../constants/colors';
 
 export default function InputField({

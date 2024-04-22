@@ -27,16 +27,15 @@ const JournalPage = () => {
   };
 
   const goToNewEntryPage = () => {
-    navigation.navigate('NewJournalEntry'); // Navigate to the page for adding new journal entry
+    navigation.navigate('NewJournalEntry');
   };
 
   const goToNewQuestionModePage = () => {
-    navigation.navigate('QuestionMode'); // Navigate to the page for adding new journal entry
+    navigation.navigate('QuestionMode');
   };
 
   const deleteAllEntries = async () => {
     try {
-      // Prompt user for confirmation
       Alert.alert(
           'Delete All Entries',
           'Are you sure you want to delete all journal entries?',
@@ -48,7 +47,6 @@ const JournalPage = () => {
             {
               text: 'OK',
               onPress: async () => {
-                // Delete all entries from AsyncStorage and update state
                 await AsyncStorage.removeItem('journalEntries');
                 setJournalEntries([]);
               },
@@ -108,28 +106,28 @@ const styles = StyleSheet.create({
     backgroundColor: colors.startPageBg,
   },
   returnButton: {
-    padding: windowWidth * 0.025, // 2.5% of screen width
-    borderRadius: windowWidth * 0.0125, // 1.25% of screen width
-    marginTop: windowHeight * 0.01, // 1% of screen height
+    padding: windowWidth * 0.025,
+    borderRadius: windowWidth * 0.0125,
+    marginTop: windowHeight * 0.01,
   },
   heading: {
-    fontSize: RFValue(35), // Adjust based on screen width
+    fontSize: RFValue(35),
     fontWeight: 'bold',
-    marginBottom: windowHeight * 0.02, // Adjust based on screen height
+    marginBottom: windowHeight * 0.02,
     top: windowHeight * 0.001,
     alignSelf: 'center',
     color: colors.white,
   },
   scrollView: {
     flex: 1,
-    padding: windowWidth * 0.05, // Adjust based on screen width
+    padding: windowWidth * 0.05,
   },
   entryContainer: {
-    marginBottom: windowWidth * 0.05, // Adjust based on screen width
-    padding: windowWidth * 0.04, // Adjust based on screen width
+    marginBottom: windowWidth * 0.05,
+    padding: windowWidth * 0.04,
     borderWidth: 1,
     borderColor: 'rgba(0,0,0,0.12)',
-    borderRadius: windowWidth * 0.05, // Adjust based on screen width
+    borderRadius: windowWidth * 0.05,
     shadowColor: '#000',
     shadowOffset: { width: windowWidth * 0.005, height: windowHeight * 0.005 },
     shadowOpacity: 0.25,
@@ -139,11 +137,10 @@ const styles = StyleSheet.create({
   },
   addButton: {
     position: 'absolute',
-    //top: windowHeight * 0.85,
     left: windowWidth * 0.85,
-    width: windowWidth * 0.1, // Adjust based on screen width
-    height: windowWidth * 0.1, // Adjust based on screen width
-    borderRadius: windowWidth * 0.05, // Adjust based on screen width
+    width: windowWidth * 0.1,
+    height: windowWidth * 0.1,
+    borderRadius: windowWidth * 0.05,
     backgroundColor: '#A4A4F7',
     justifyContent: 'center',
     alignItems: 'center',
@@ -155,7 +152,7 @@ const styles = StyleSheet.create({
   },
   addButtonText: {
     color: 'white',
-    fontSize: windowWidth * 0.06, // Adjust based on screen width
+    fontSize: windowWidth * 0.06,
   },
   deleteButton: {
     backgroundColor: 'rgba(255,0,0,0.51)',
@@ -166,7 +163,6 @@ const styles = StyleSheet.create({
     width: windowWidth * 0.25,
     height: windowHeight * 0.04,
     left: windowWidth * 0.05,
-    //bottom: windowHeight * 0.04,
     shadowColor: '#000',
     shadowOffset: { width: windowWidth * 0.005, height: windowHeight * 0.005 },
     shadowOpacity: 0.25,
@@ -179,15 +175,12 @@ const styles = StyleSheet.create({
   },
   questionMode: {
     backgroundColor: '#A4A4F7',
-    //padding: 15,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
     width: windowWidth * 0.35,
     height: windowHeight * 0.04,
     left: windowWidth * 0.1,
-    //alignSelf: 'center',
-    //bottom: windowHeight * 0.07,
     shadowColor: '#000',
     shadowOffset: { width: windowWidth * 0.005, height: windowHeight * 0.005 },
     shadowOpacity: 0.25,

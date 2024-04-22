@@ -53,9 +53,9 @@ const NumbersGame = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   returnButton: {
-    padding: windowWidth * 0.025, // 2.5% of screen width
-    borderRadius: windowWidth * 0.0125, // 1.25% of screen width
-    marginTop: windowHeight * 0.01, // 1% of screen height
+    padding: windowWidth * 0.025,
+    borderRadius: windowWidth * 0.0125,
+    marginTop: windowHeight * 0.01,
   },
   buttonText: {
     color: colors.white,

@@ -12,7 +12,6 @@ const JournalEntryDetails = ({ route, navigation }) => {
 
     const deleteEntry = async (entryToDelete) => {
         try {
-            // Prompt user for confirmation
             Alert.alert(
                 'Delete Entry',
                 'Are you sure you want to delete this journal entry?',
@@ -24,13 +23,11 @@ const JournalEntryDetails = ({ route, navigation }) => {
                     {
                         text: 'OK',
                         onPress: async () => {
-                            // Filter out the entry to delete
                             const updatedEntries = journalEntries.filter(item => item.title !== entry.title);
 
-                            // Update AsyncStorage
+
                             await AsyncStorage.setItem('journalEntries', JSON.stringify(updatedEntries));
 
-                            // Update state
                             setJournalEntries(updatedEntries);
                         },
                     },

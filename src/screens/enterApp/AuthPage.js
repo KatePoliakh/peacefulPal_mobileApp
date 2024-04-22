@@ -31,10 +31,8 @@ function AuthPage({ navigation }) {
       });
 
       if (response.ok) {
-        // Login successful, navigate to main screen or dashboard
         login();
       } else {
-        // Login failed, display error message
         const data = await response.json();
         Alert.alert('Error', data.error);
       }
@@ -134,7 +132,7 @@ const styles = StyleSheet.create({
   },
   input: {
     height: windowHeight * 0.07,
-    marginBottom: windowHeight * 0.02, // Add margin to the bottom of each input
+    marginBottom: windowHeight * 0.02,
     backgroundColor: colors.white,
     borderRadius: 10,
     paddingLeft: 10,

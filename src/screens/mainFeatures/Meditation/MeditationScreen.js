@@ -20,7 +20,7 @@ const MeditationScreen = ({ navigation }) => {
 
   async function playSound(audioPath, meditationId) {
     if (currentMeditation === meditationId) {
-      return; // If the same meditation is already playing, do nothing
+      return;
     }
     if (sound) {
       await sound.stopAsync();

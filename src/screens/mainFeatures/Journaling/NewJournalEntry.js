@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {View, Text, TextInput, Button, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
+import {View, Text, TextInput, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import {windowHeight, windowWidth} from "../../../constants/dimensions";
@@ -15,11 +15,9 @@ const NewJournalEntry = () => {
 
     const saveEntry = async () => {
         if (title.trim() === '' || content.trim() === '') {
-            // Validation: Ensure title and content are not empty
             return;
         }
 
-        // Create a new entry object
         const currentDate = new Date();
         const newEntry = {
             date: currentDate.toDateString(),
@@ -28,20 +26,16 @@ const NewJournalEntry = () => {
         };
 
         try {
-            // Load existing entries from AsyncStorage
             const existingEntries = await AsyncStorage.getItem('journalEntries');
             let updatedEntries = [];
             if (existingEntries !== null) {
                 updatedEntries = JSON.parse(existingEntries);
             }
 
-            // Add the new entry to the existing entries
             updatedEntries.push(newEntry);
 
-            // Save the updated entries to AsyncStorage
             await AsyncStorage.setItem('journalEntries', JSON.stringify(updatedEntries));
 
-            // Navigate back to the journal page
             navigation.goBack();
         } catch (error) {
             console.error('Error saving journal entry:', error);
@@ -84,29 +78,31 @@ const styles = StyleSheet.create({
         backgroundColor: colors.startPageBg,
     },
     returnButton: {
-        padding: windowWidth * 0.025, // 2.5% of screen width
-        borderRadius: windowWidth * 0.0125, // 1.25% of screen width
-        marginTop: windowHeight * 0.02, // 1% of screen height
+        padding: windowWidth * 0.025,
+        borderRadius: windowWidth * 0.0125,
+        marginTop: windowHeight * 0.02,
     },
     heading: {
-        fontSize: RFValue(40), // Adjust based on screen width
+        fontSize: RFValue(40),
         fontWeight: 'bold',
-        marginBottom: windowHeight * 0.02, // Adjust based on screen height
+        marginBottom: windowHeight * 0.02,
         top: windowHeight * 0.01,
         alignSelf: 'center',
         color: colors.white,
     },
     label: {
-        fontSize: RFValue(20), // Adjust based on screen width
-        marginBottom: windowWidth * 0.01, // Adjust based on screen width
+        fontSize: RFValue(20),
+        marginBottom: windowWidth * 0.01,
+        fontWeight: "bold",
+        color: colors.BottomButton,
     },
     input: {
-        fontSize: windowWidth * 0.045, // Adjust based on screen width
+        fontSize: windowWidth * 0.045,
         borderWidth: 1,
         borderColor: '#ccc',
-        borderRadius: windowWidth * 0.015, // Adjust based on screen width
-        padding: windowWidth * 0.04, // Adjust based on screen width
-        marginBottom: windowWidth * 0.04, // Adjust based on screen width
+        borderRadius: windowWidth * 0.015,
+        padding: windowWidth * 0.04,
+        marginBottom: windowWidth * 0.04,
         backgroundColor: colors.white,
         shadowColor: '#000',
         shadowOffset: { width: windowWidth * 0.005, height: windowHeight * 0.005 },

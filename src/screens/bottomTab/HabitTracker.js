@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: RFValue(40),
-    fontWeight: 'bold',
+    fontWeight: "bold",
     alignSelf: 'center',
     marginTop: windowHeight * 0.01,
     marginBottom: windowHeight * 0.02,
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   dayText: {
     flex: 1,
     textAlign: 'center',
-    fontWeight: 'bold'
+    fontWeight: "bold"
   },
   addHabitContainer: {
     flexDirection: 'row',
@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
   },
   addButtonText:{
     color: colors.white,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
 });
 

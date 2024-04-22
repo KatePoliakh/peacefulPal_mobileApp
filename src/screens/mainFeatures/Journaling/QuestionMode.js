@@ -22,11 +22,9 @@ const QuestionMode = () => {
 
     const saveEntry = async () => {
         if (title.trim() === '' || content.trim() === '') {
-            // Validation: Ensure title and content are not empty
             return;
         }
 
-        // Create a new entry object
         const currentDate = new Date();
         const newEntry = {
             date: currentDate.toDateString(),

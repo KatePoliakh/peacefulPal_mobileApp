@@ -5,7 +5,6 @@ import colors from "../constants/colors"
 import { windowWidth, windowHeight } from '../constants/dimensions';
 import { ScrollView } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
-import { apiUrl } from  '../constants/url';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Home({navigation}) {
@@ -112,7 +111,7 @@ export default function Home({navigation}) {
               <Text style={styles.buttonText}>Journaling</Text>
               <Image
                 style={styles.ButtonIcon}
-                source={require('../assets/images/soup_icon.png')}
+                source={require('../assets/images/book-04.png')}
               />
              </TouchableOpacity>
           </View>
@@ -239,8 +238,8 @@ const styles = StyleSheet.create({
     padding: RFValue(5),
   },
   ButtonIcon: {
-    width: windowWidth * 0.2, // 10% of window width
-    height: windowHeight * 0.1, // 10% of window height
+    width: windowWidth * 0.3,
+    height: windowHeight * 0.1,
 
   },
   BgCircle1: {

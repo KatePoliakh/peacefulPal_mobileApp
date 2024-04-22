@@ -1,9 +1,8 @@
 import * as Font from 'expo-font';
-import AppLoading from 'expo-app-loading';
 
 const fetchFonts = () => {
     return Font.loadAsync({
-      'Raleway': require('../assets/fonts/Raleway-VariableFont_wght.ttf'), // adjust the path to your font file as needed
-      'Roboto': require('../assets/fonts/Roboto-Regular.ttf'), // adjust the path to your font file as needed
+      'Raleway': require('../assets/fonts/Raleway-VariableFont_wght.ttf'),
+      'Roboto': require('../assets/fonts/Roboto-Regular.ttf'),
     });
   };
