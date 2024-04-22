@@ -83,12 +83,16 @@ const RegisterScreen = ({navigation}) => {
                    placeholder="Password"
                    placeholderTextColor="grey"
                    onChangeText={text => setPassword(text)}
-                   value={password}/>
+                   value={password}
+                   secureTextEntry={true}
+        />
         <TextInput style={styles.input}
                    placeholder="Confirm password"
                    placeholderTextColor="grey"
                    onChangeText={text => setConfirmPassword(text)}
-                   value={confirmPassword}/>
+                   value={confirmPassword}
+                   secureTextEntry={true}
+        />
         </View>
 
         <CustomButton label={'Register'} onPress={handleRegister} />
@@ -144,7 +148,7 @@ const styles = StyleSheet.create({
     marginBottom: '5%', // Adjusted margin based on percentage
     marginTop: '15%', // Adjusted margin based on percentage
     color: colors.white,
-    fontWeight: '500',
+    fontWeight: 'bold',
   },
   centeredText: {
     textAlign: 'center',

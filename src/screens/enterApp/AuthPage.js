@@ -63,7 +63,9 @@ function AuthPage({ navigation }) {
                        placeholder="Password"
                        placeholderTextColor="grey"
                        onChangeText={text => setPassword(text)}
-                       value={password}/>
+                       value={password}
+                       secureTextEntry={true}
+            />
           </View>
           <CustomButton label={'Login'} onPress={handleLogin} />
           <View style={styles.rowView}>
