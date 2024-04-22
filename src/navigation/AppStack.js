@@ -33,6 +33,8 @@ import HabitTracker from '../screens/bottomTab/HabitTracker';
 import HomePage from '../screens/HomePage';
 import {RFValue} from "react-native-responsive-fontsize";
 import {windowHeight, windowWidth } from "../constants/dimensions";
+import QuestionMode from "../screens/mainFeatures/Journaling/QuestionMode";
+import JournalEntryDetails from "../screens/mainFeatures/Journaling/JournalEntryDetails";
 
 
 const Stack = createNativeStackNavigator();
@@ -51,6 +53,8 @@ const HomeStack = () => {
 
       <Stack.Screen name="JournalScreen" component={JournalScreen} />
         <Stack.Screen name="NewJournalEntry" component={NewJournalEntry}/>
+        <Stack.Screen name="QuestionMode" component={QuestionMode}/>
+        <Stack.Screen name="JournalEntryDetails" component={JournalEntryDetails}/>
       <Stack.Screen name="BreathingScreen" component={BreathingScreen} />
 
       <Stack.Screen name="CalmnessScreen" component={CalmnessScreen} />
