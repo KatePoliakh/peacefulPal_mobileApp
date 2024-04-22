@@ -37,6 +37,7 @@ import QuestionMode from "../screens/mainFeatures/Journaling/QuestionMode";
 import JournalEntryDetails from "../screens/mainFeatures/Journaling/JournalEntryDetails";
 
 
+
 const Stack = createNativeStackNavigator();
 
 
@@ -69,7 +70,7 @@ const HomeStack = () => {
       <Stack.Screen name="BubbleGame" component={BubbleGame} />
       
       <Stack.Screen name="HabitTracker" component={HabitTracker} />
-      <Stack.Screen name="Habit" component={Habit}/>
+
 
     </Stack.Navigator>
   );

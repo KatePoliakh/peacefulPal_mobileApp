@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
+import {Text, StyleSheet, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Audio } from 'expo-av';
 import { RFValue } from 'react-native-responsive-fontsize';
@@ -9,9 +9,9 @@ import { windowHeight, windowWidth } from '../../../constants/dimensions';
 const meditations = [
   { id: 1, title: 'Guided Breathing', audioPath: require('../../../assets/audio/meditations/3_minute_Breathing.wav') },
   { id: 2, title: 'Body Scan', audioPath: require('../../../assets/audio/meditations/4_minute_body_scan.wav') },
-  { id: 3, title: 'Mindfulness Practice', audioPath: require('../../../assets/audio/meditations/mindfulness_practice.wav') },
+  { id: 3, title: 'Mindfulness Practice', audioPath: require('../../../assets/audio/meditations/10-min-bodyscan-by-christy-cassisa.mp3') },
   { id: 4, title: 'Tension Release', audioPath: require('../../../assets/audio/meditations/tension_release.wav') },
-  { id: 5, title: 'Birds in forest on a sunny day', audioPath: require('../../../assets/audio/meditations/birds-in-forest-on-sunny-day.wav') },
+  { id: 5, title: 'Birds in forest on a sunny day', audioPath: require('../../../assets/audio/meditations/4_minute_body_scan.wav') },
 ];
 
 const MeditationScreen = ({ navigation }) => {
