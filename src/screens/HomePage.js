@@ -6,39 +6,33 @@ import { windowWidth, windowHeight } from '../constants/dimensions';
 import { ScrollView } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { apiUrl } from  '../constants/url';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Home({navigation}) {
     const [userName, setUserName] = useState('');
     useEffect(() => {
-        // Fetch username from server or other storage mechanism
         fetchUserName();
     }, []);
 
-//ПОЧИНИТЬ!!!
-
     const fetchUserName = async () => {
-        // Replace 'api/login' with your actual login endpoint
-        const response = await fetch(`${apiUrl}/api/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email: 'user@example.com', password: 'password' }), // Provide user's email and password
-        });
-        const data = await response.json();
-        if (response.ok) {
-            setUserName(data.userName);
-        } else {
-            console.error('Error fetching user name:', data.error);
+        try {
+            const storedUserName = await AsyncStorage.getItem('userName');
+            console.log(storedUserName);
+            if (storedUserName !== null) {
+                setUserName(storedUserName);
+            }
+        } catch (error) {
+            console.error('Error fetching user name:', error);
         }
     };
-  return (
+
+    return (
     <SafeAreaView style={styles.Home}>
       <View style={styles.BgCircle1}></View>
       <View style={styles.BgCircle2}></View>
       <View style={styles.WelcomeGroup}>
-        <View style={styles.Group}>
-          <Text style={styles.WelcomeBack}>Welcome back, {userName}!</Text>
+        <View>
+          <Text style={styles.WelcomeBack}>Welcome back!</Text>
           <Text style={styles.question}>
                 What are you missing right now?
           </Text>
@@ -48,45 +42,33 @@ export default function Home({navigation}) {
       <View style={{flexDirection: 'row'}}>
       <ScrollView horizontal style={styles.Feeling} showsHorizontalScrollIndicator={false}>
         <TouchableOpacity onPress={() => navigation.navigate('HappinessScreen')}>
-        <View style={styles.Happy}>
+        <View>
           <View style={styles.MoodStyle}>
-            <Image
-              style={styles.Happy}
-              source={require('../assets/images/moodlets/happyMoodlet.png')}
-            />
+            <Image source={require('../assets/images/moodlets/happyMoodlet.png')}/>
           </View>
           <Text style={styles.HappyText}>Happy</Text>
         </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('CalmnessScreen')}>
-        <View style={styles.Calm}>
+        <View>
           <View style={styles.MoodStyle}>
-            <Image
-              style={styles.Calm}
-              source={require('../assets/images/moodlets/calmMoodlet.png')}
-               />
+            <Image source={require('../assets/images/moodlets/calmMoodlet.png')}/>
           </View>
           <Text style={styles.CalmText}>Calm</Text>
         </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('RelaxfulScreen')}>
-          <View style={styles.Relax}>
+          <View>
             <View style={styles.MoodStyle}>
-              <Image
-                style={styles.Relax}
-                source={require('../assets/images/moodlets/relaxMoodlet.png')}
-              />
+              <Image source={require('../assets/images/moodlets/relaxMoodlet.png')}/>
             </View>
             <Text style={styles.RelaxText}>Relax</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('FocusedScreen')}>
-        <View style={styles.Focus}>
+        <View>
             <View style={styles.MoodStyle}>
-              <Image
-                style={styles.Focus}
-                source={require('../assets/images/moodlets/focusMoodlet.png')}
-              />
+              <Image source={require('../assets/images/moodlets/focusMoodlet.png')}/>
             </View>
             <Text style={styles.FocusText}>Focus</Text>
         </View>
@@ -109,7 +91,7 @@ export default function Home({navigation}) {
               />
              </TouchableOpacity>
           </View>
-          <View horizontalstyle={styles.GamepadButtonButton}>
+          <View >
              <TouchableOpacity
              onPress={() => navigation.navigate('GamesScreen')}
              style={styles.TasksButton}>
@@ -123,7 +105,7 @@ export default function Home({navigation}) {
           </View>
 
           <View style={{ flexDirection: 'row', left: windowWidth * 0.02}}>
-          <View horizontalstyle={styles.JornalButton}>
+          <View horizontalstyle={styles.JournalButton}>
              <TouchableOpacity
              onPress={() => navigation.navigate('JournalScreen')}
              style={styles.TasksButton}>
@@ -161,7 +143,6 @@ const styles = StyleSheet.create({
   WelcomeGroup: {
     top: "8%",
     left: windowWidth * 0.02,
-    //backgroundColor: 'green',
     height: '10%',
 
   },
@@ -214,7 +195,6 @@ const styles = StyleSheet.create({
     top: '12%',
     left: windowWidth * 0.02,
     fontWeight: "500",
-    //backgroundColor: 'yellow',
   },
   TaskNavStyle: {
     width: "100%",
@@ -225,9 +205,9 @@ const styles = StyleSheet.create({
       bottom: "9%",
       justifyContent: "center",
       alignItems: "center",
-      width: windowWidth * 0.45, // 75% of window width
-      height: windowHeight * 0.2, // 10% of window height
-      borderRadius: windowWidth * 0.025, // 2.5% of window width
+      width: windowWidth * 0.45,
+      height: windowHeight * 0.2,
+      borderRadius: windowWidth * 0.025,
       backgroundColor: colors.white,
       margin: "2%",
       shadowColor: '#000',
@@ -250,7 +230,7 @@ const styles = StyleSheet.create({
     width: "100%",
     padding: RFValue(5),
   },
-  JornalButton:{
+  JournalButton:{
     width: "100%",
     padding: RFValue(5),
   },
