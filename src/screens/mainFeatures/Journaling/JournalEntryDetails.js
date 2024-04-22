@@ -1,6 +1,6 @@
 // JournalEntryDetails.js
 import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, ScrollView, Alert } from 'react-native';
+import {Text, StyleSheet, SafeAreaView, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import Icon from "react-native-vector-icons/FontAwesome";
 import { RFValue } from "react-native-responsive-fontsize";
 import colors from "../../../constants/colors";
@@ -49,9 +49,7 @@ const JournalEntryDetails = ({ route, navigation }) => {
             <ScrollView>
                 <Text style={styles.title}>{entry.title}</Text>
                 <Text style={styles.content}>{entry.content}</Text>
-                <TouchableOpacity style={styles.deleteButton} onPress={deleteEntry}>
-                    <Text style={styles.deleteButtonText}>Delete Entry</Text>
-                </TouchableOpacity>
+
             </ScrollView>
         </SafeAreaView>
     );
