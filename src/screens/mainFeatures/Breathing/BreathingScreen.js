@@ -1,135 +1,122 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Animated, SafeAreaView } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
-import colors from '../../../constants/colors';
-import { windowHeight, windowWidth } from '../../../constants/dimensions';
-import { RFValue } from 'react-native-responsive-fontsize';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, Animated, Easing, TouchableOpacity, SafeAreaView } from 'react-native';
+import Icon from "react-native-vector-icons/FontAwesome";
+import { RFValue } from "react-native-responsive-fontsize";
+import colors from "../../../constants/colors";
+import { windowHeight, windowWidth } from "../../../constants/dimensions";
 
-const BreathingScreen = ({ navigation }) => {
-  const [isBreathing, setIsBreathing] = useState(false);
-  const animation = useRef(new Animated.Value(0)).current;
-  const [breathingState, setBreathingState] = useState('');
+const BreathingExercise = ({ navigation }) => {
+  const [stage, setStage] = useState('Inhale');
+  const [animation] = useState(new Animated.Value(0));
 
   useEffect(() => {
-    if (isBreathing) {
-      startBreathing();
-    } else {
-      stopBreathing();
-    }
-  }, [isBreathing]);
+    const phrases = ['Inhale', 'Hold', 'Exhale'];
+    let index = 0;
 
-  const startBreathing = () => {
-    Animated.loop(
-      Animated.sequence([
-        Animated.timing(animation, {
-          toValue: 0,
-          duration: 8000, // Inhale duration
-          useNativeDriver: true,
-        }),
-        Animated.delay(4000), // Hold duration
-        Animated.timing(animation, {
-          toValue: 1,
-          duration: 4000, // Exhale duration
-          useNativeDriver: true,
-        }),
-        Animated.delay(8000),
-      ]),
-      { iterations: -1 } // Loop indefinitely
-    ).start();
-  };
-  
+    const animateNextPhrase = () => {
+      setStage(phrases[index]);
+      index = (index + 1) % phrases.length;
+    };
 
-  const stopBreathing = () => {
-    setIsBreathing(false);
-    animation.stopAnimation();
-    animation.setValue(0); // Reset the animation value to 0
-  };
+    const inhale = Animated.timing(animation, {
+      toValue: 1,
+      duration: 4000,
+      easing: Easing.linear,
+      useNativeDriver: true,
+    });
+    const hold = Animated.timing(animation, {
+      toValue: 2,
+      duration: 4000,
+      easing: Easing.linear,
+      useNativeDriver: true,
+    });
+    const exhale = Animated.timing(animation, {
+      toValue: 3,
+      duration: 4000,
+      easing: Easing.linear,
+      useNativeDriver: true,
+    });
 
-  animation.addListener(({ value }) => {
-    // Set the breathing state text based on the animation value
-    if (value < 0.5) {
-      setBreathingState('Inhale');
-    } else if (value >= 0.5 && value < 1) {
-      setBreathingState('Hold');
-    } else {
-      setBreathingState('Exhale');
-    }
+    const loopAnimation = () => {
+      Animated.sequence([inhale, hold, exhale]).start(() => loopAnimation());
+    };
+
+    const phraseInterval = setInterval(animateNextPhrase, 3000); // Change phrase every 4 seconds
+    loopAnimation();
+
+    return () => {
+      clearInterval(phraseInterval); // Clear the interval when component unmounts
+      animation.setValue(0);
+    };
+  }, []);
+
+
+  const circleScale = animation.interpolate({
+    inputRange: [0, 1, 2, 3],
+    outputRange: [1, 1.5, 1.5, 1],
   });
 
-  const interpolateAnimation = animation.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['rgba(255,255,255,0.5)', 'rgba(255,0,0,0.5)'],
-  });
-
-  const animatedStyle = {
-    backgroundColor: interpolateAnimation,
-  };
+  // Change color based on stage
+  let circleColor = 'skyblue';
+  if (stage === 'Hold') {
+    circleColor = 'gold';
+  } else if (stage === 'Exhale') {
+    circleColor = 'salmon';
+  }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <TouchableOpacity style={styles.returnButton} onPress={() => navigation.goBack()}>
-          <Icon name="arrow-back"  styles={{fontSize : 30}}  color={colors.BottomButton} />
+          <Icon name="arrow-left" size={RFValue(20)} color={colors.BottomButton} />
         </TouchableOpacity>
         <Text style={styles.title}>Breathing</Text>
-        <TouchableOpacity onPress={() => setIsBreathing(!isBreathing)} style={styles.button}>
-          <Text style={styles.buttonText}>{isBreathing ? 'Stop' : 'Start'}</Text>
-        </TouchableOpacity>
-        {isBreathing && (
-          <Animated.View style={[styles.animationBox, animatedStyle]}>
-            <Text style={styles.animationText}>{breathingState}</Text>
-          </Animated.View>
-        )}
-      </View>
-    </SafeAreaView>
+        <View style={{ alignItems: 'center', justifyContent: 'center', top: windowHeight * 0.2 }}>
+          <Text style={styles.stageText}>{stage}</Text>
+          <Animated.View
+              style={[
+                styles.circle,
+                {
+                  transform: [{ scale: circleScale }],
+                  backgroundColor: circleColor,
+                },
+              ]}
+          />
+        </View>
+      </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
     backgroundColor: '#fff',
-    height: windowHeight,
     width: windowWidth,
+    height: windowHeight,
   },
   returnButton: {
     position: 'absolute',
-    top: windowHeight * 0.01,
+    top: windowHeight * 0.05,
     left: windowWidth * 0.01,
     padding: windowWidth * 0.025,
     borderRadius: windowWidth * 0.0125,
   },
   title: {
-    fontSize: RFValue(24),
+    fontSize: RFValue(40),
     fontWeight: 'bold',
-    marginBottom: 20,
-    top: windowHeight * 0.09,
+    top: windowHeight * 0.05,
+    alignSelf: 'center',
+    color: colors.BottomButton,
   },
-  button: {
-    backgroundColor: '#007BFF',
-    padding: 15,
-    borderRadius: 10,
-    top: windowHeight * 0.1,
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 18,
+  stageText: {
+    fontSize: RFValue(25),
+    marginBottom: RFValue(50),
     fontWeight: 'bold',
+    color: colors.BottomButton,
   },
-  animationBox: {
-    marginTop: 30,
-    width: 200,
-    height: 200,
-    borderRadius: 100,
-    justifyContent: 'center',
-    alignItems: 'center',
-    top: windowHeight * 0.2,
-  },
-  animationText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#fff',
+  circle: {
+    width: windowWidth * 0.56,
+    height: windowHeight * 0.25,
+    borderRadius: windowHeight * 0.2,
   },
 });
 
-export default BreathingScreen;
+export default BreathingExercise;
