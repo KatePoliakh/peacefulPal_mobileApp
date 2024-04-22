@@ -1,7 +1,3 @@
-Writing a README for your Expo React Native project is essential for providing clear instructions on how to run the project and its dependencies. Below is a template for your README file:
-
----
-
 # PeacefulPal 
 
 ## Description
