@@ -33,3 +33,4 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+src/assets/audio/meditations/10-min-bodyscan-by-christy-cassisa.mp3
